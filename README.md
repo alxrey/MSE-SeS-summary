@@ -3,12 +3,14 @@
 ## Liste des sujets de l'examen oral
 
 ### Buildroot
+
 1. D’expliquer les principaux répertoires de buildroot
 2. D’expliquer comment configurer, compiler buildroot, u-boot, kernel
 3. D’expliquer comment le rootfs est généré
 4. D’expliquer le rootfs_overlay
 
 ### u-boot
+
 1. D’expliquer le démarrage du NanoPi
 2. De connaître, expliquer les principales commandes de u-boot utilisées durant le 
 démarrage
@@ -23,16 +25,19 @@ démarrage
 11. D’expliquer le fichier boot.scr
 
 ### Compilation du noyau
+
 1. De connaître les principaux répertoires du noyau Linux
 2. De connaître les principales méthodes pour sécuriser le noyau Linux
 3. D’expliquer le principe des software attacks : buffer overflow, ret2libc, ROP
 4. D’expliquer le principe des protections contre les softwares attack : ASLR, PIE, canary
 
 ### Valgrind
+
 1. De connaître les différents outils de Valgrind et leur utilisation
 2. Pour un code donné avec des erreurs, savoir quel-s outil-s de Valgrind utiliser
 
 ### Hardening Linux
+
 1. De contrôler l’intégrité d’un package, d’un programme
 2. De configurer un nouveau package, programme
 3. De cross-compiler un programme
@@ -48,6 +53,7 @@ démarrage
 
 
 ### Hardening Linux
+
 1. De contrôler l’intégrité d’un package, d’un programme
 2. De configurer un nouveau package, programme
 3. De cross-compiler un programme
@@ -63,6 +69,7 @@ démarrage
 
 
 ### Filesystems security
+
 1. De connaître les « files permissions » sous Linux
 2. De contrôler et sécuriser les comptes utilisateurs sous Linux
 3. De connaître les real-effective userID and groupID
@@ -73,6 +80,7 @@ démarrage
 8. De savoir comment les mots de passe sont mémorisés sous Linux
 
 ### Firewall Iptables
+
 1. De connaître les principes de Netfilter, iptables
 2. Quelles sont les principales utilisations de netfilter-iptables
 3. Savoir expliquer les notions de chain-tables
