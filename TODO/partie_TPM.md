@@ -59,8 +59,21 @@ En deux parties: 1. Calcul du HASH puis encryptage avec clé privée. **(figure 
 
 ### Savoir encrypter-décrypter, signer-vérifier avec un TPM
 
+- `tpm2_rsaencrypt -c child -s rsaes clearfile –o encryptedfile`
+
+- `tpm2_rsadecrypt -c child -s rsaes encryptedfile -o clearfile`
+
+- `tpm2_sign -c child -g sha256 -o file.sign file`
+
+- `tpm2_verifysignature -c child -g sha256 -s file.sign -m file`
+
 ### Savoir utiliser les registres PCR
+
+
 
 ### Savoir sauver des données sur le TPM
 
+
+
 ### Savoir sauver des données et les protéger avec une PCR policy
+
