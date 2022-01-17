@@ -1,6 +1,5 @@
 \documentclass[resume]{subfiles}
 
-
 \begin{document}
 \section{File system}
 \subsection{Génération}
@@ -138,12 +137,12 @@ Mount options for the journaling (man ext4):
 \subsubsection{/etc/fstab file}
 File \textbf{/etc/fstab} contains descriptive information about the filesystems the system can mount
 \begin{itemize}
-    \item <file system> : block special device or remote filesystem to be mounted
-    \item <mount pt> : mount point for the filesystem
-    \item <type> : the filesystem type
-    \item <options> : mount options associated with the filesystem
-    \item <dump> : used by the dump (backup filesystem) command to determine whichfilesystems need to be dumped (0 -> no backup)
-    \item <pass> : used by the fsck (8) program to determine the order in which filesystem checks are done at reboot time. The root filesystem should be specified with 1, and other filesystems should have a 2. if <pass> is not present or equal 0 -> fsck willassume that the filesystem is not checked.
+    \item file system : block special device or remote filesystem to be mounted
+    \item mount pt : mount point for the filesystem
+    \item type : the filesystem type
+    \item options : mount options associated with the filesystem
+    \item dump : used by the dump (backup filesystem) command to determine whichfilesystems need to be dumped (0 -> no backup)
+    \item pass : used by the fsck (8) program to determine the order in which filesystem checks are done at reboot time. The root filesystem should be specified with 1, and other filesystems should have a 2. if <pass> is not present or equal 0 -> fsck willassume that the filesystem is not checked.
     \item Field options: It contains at least the type of mount plus any additional options appropriate to the filesystem type.
 \end{itemize}
 Common for all types of file system are the options (man mount) :
@@ -229,7 +228,7 @@ Scalability:
     \label{fig:fsComp}
 \end{figure}
 
-\subsection{4. Expliquer les « files system » de type Journal, B-Tree/CoW, log filesystem}
+\subsection{4. Expliquer les files system de type Journal, B-Tree/CoW, log filesystem}
 
 \subsubsection{Journalized filesystem}
 A journalized filesystem keeps track of every modification in a journal in a dedicated area
@@ -286,8 +285,7 @@ blocks are always written to the end.
 \end{enumerate}
 
 \subsection{5. De connaître les caractéristiques du filesystem Squashfs, ainsi que les commandes associées}
-\
-begin{itemize}
+\begin{itemize}
     \item Squashfs is a compressed read-only filesystem for Linux
     \item Squashfs versions
     \begin{itemize}
@@ -298,7 +296,6 @@ begin{itemize}
     \item It uses gzip, lzma, lzo, lz4 and xz compression to compress files, inodes and directories
     \item SquashFS 4.0 supports 64 bit filesystems and files (larger than 4GB), full uid/gid information, hard links and timestamps
     \item Squashfs is intended for general read-only filesystem use, for archival use, and in embedded systems with small processors where low overhead is needed
-    \item 
 \end{itemize}
 
 \begin{figure}[H]
@@ -321,7 +318,7 @@ begin{itemize}
     \item The mount command is used with a loopback device in order to read the squashed file system dir.sqsh
     \begin{lstlisting}[style=console,label={},caption={}]
         bash# mkdir /mnt/dir
-        bash# mount –o loop –t squashfs /data/dir.sqsh /mnt/dir
+        bash# mount -o loop -t squashfs /data/dir.sqsh /mnt/dir
         bash# ls /mnt/dir
     \end{lstlisting}
     \item It is possible to copy the dir.sqsh to an unmounted partition (e.g. /dev/sdb2) with the dd command and next to mount the partition as squashfs file system
