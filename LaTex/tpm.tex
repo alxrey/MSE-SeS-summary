@@ -14,23 +14,29 @@
     \centering
     \includegraphics[width=0.3\textwidth]{Figures/TPM/CBC.png}
 \end{figure}
-\item \verb!openssl enc -aes-256-cbc -e -in t.txt -out t.enc! //encrypt
-\item \verb!openssl enc -aes-256-cbc -d -in t.enc -out t.txt!//decrypt
+
+\item \begin{lstlisting}[style=bash]
+openssl enc -aes-256-cbc -e -in t.txt -out t.enc #encrypt
+\end{lstlisting}
+\item \begin{lstlisting}[style=bash]
+openssl enc -aes-256-cbc -d -in t.enc -out t.txt #decrypt
+\end{lstlisting}
 \end{itemize}
 
 \subsubsection{asymétrique}
 \begin{itemize}
 \item Deux clés (publique et privée) clé publique disponible par des certificats (CMD pgp)
-\item Encrypt public -> Decrypt private => confidentialité
-\item Encrypt private-> Decrypt public => signature digitale
+\item Encrypt public - Decrypt private = confidentialité
+\item Encrypt private- Decrypt public = signature digitale
 \end{itemize}
 
 \subsubsection{hash}
 
 Transforme un texte, document en un nombre de N bits unique (SHA-2, SHA-3, Blake2).
 
-\verb!md5sum file => a6a0e8d0522e2c5de921b1c455506320! où
-\verb!openssl dgst -md5 file MD5(file)= a6a0e8d0522e2c5de921b1c455506320!  
+\verb!md5sum file => a6a0e8d0522e2c5de921b1c455506320! 
+où
+\verb!openssl dgst -md5 file!  
 
 \subsubsection{signature}
 
@@ -76,9 +82,9 @@ En deux parties: 1. Calcul du HASH puis encryptage avec clé privée.
 tpm2_createprimary -C o -G rsa2048 -c o_prim #créer un clé primaire owner
 tpm2_getcap handles-transient #voir clé dans la RAM
 tpm2_getcap handles-persistent #voir clé dans la NV-RAM
-tpm2_evictcontrol –c o_primary.ctx # sauver une clé en NV-RAM
+tpm2_evictcontrol -c o_primary.ctx # sauver une clé en NV-RAM
 tpm2_flushcontext! -t ##effacer toute la RAM
-tpm2_create -C o_prim -G rsa2048 -u child_pub –r child_priv #créer clé enfant
+tpm2_create -C o_prim -G rsa2048 -u child_pub -r child_priv #créer clé enfant
 tpm2_load -C o_prim -u child_pub -r child_priv -c child #charger clé enfant
 
 \end{lstlisting}
