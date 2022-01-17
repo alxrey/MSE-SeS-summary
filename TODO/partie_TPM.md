@@ -38,10 +38,10 @@ En deux parties: 1. Calcul du HASH puis encryptage avec clé privée. **(figure 
 
 ### Connaitre les différentes hiérarchies des TPM (endorsement, platform, owner, null)
 
-- endorsement : 
-- platform
-- owner
-- null
+- endorsement : réservé au fabricant du TPM et fixé lors de la fabrication.
+- platform : réservé au fabricant de l'hôte et peut être modifier par l'équipementier.
+- owner : hiérarchie dédiée à l'utilisateur primaire du TPM peut être modifié en tout temps.
+- null : réservé aux clés temporaires (RAM s'efface à chaque redémarrage)
 
 ### Savoir créer, utiliser des clés avec un TPM
 
