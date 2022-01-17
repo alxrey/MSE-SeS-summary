@@ -41,6 +41,7 @@ make install
 \textcolor{red}{A FAIRE}
 
 \subsection{Permissions des fichiers, dossiers}
+\label{sec_filePerm}
 \begin{lstlisting}[style=console]
 ls -al => -rwxrwxrwx usr grp ..... t.txt
 chmod 755 t.txt => -rwxr-xr-x usr grp .....t.txt
@@ -59,6 +60,7 @@ chmod 755 t.txt => -rwxr-xr-x usr grp .....t.txt
 \end{itemize}
 
 \subsection{Contrôler-sécuriser user}
+\label{sec_usrPerm}
 Modifier le umask à 0027 réduit les droits
 $Droit = \overline{umask}\space \& 0777$
 
