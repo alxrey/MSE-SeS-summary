@@ -56,11 +56,50 @@ En deux parties: 1. Calcul du HASH puis encryptage avec clé privée. **(figure 
 - `tpm2_flushcontext` -t // effacer toute la RAM
 - `tpm2_create -C o_prim -G rsa2048 -u child_pub –r child_priv` // créer clé enfant
 - `tpm2_load -C o_prim -u child_pub -r child_priv -c child` // charger clé enfant
+- `shred passwd, rm -f passwd`  #supprimer de l'hôte
 
 ### Savoir encrypter-décrypter, signer-vérifier avec un TPM
 
+- `tpm2_rsaencrypt -c child -s rsaes clearfile –o encryptedfile`
+
+- `tpm2_rsadecrypt -c child -s rsaes encryptedfile -o clearfile`
+
+- `tpm2_sign -c child -g sha256 -o file.sign file`
+
+- `tpm2_verifysignature -c child -g sha256 -s file.sign -m file`
+
 ### Savoir utiliser les registres PCR
+
+tpm2_pcrreset 0
+
+tpm2_pcrextend 0:sha1=8c83...(hash)
 
 ### Savoir sauver des données sur le TPM
 
+tpm2_evictcontrol -c passwd.ctx 0x81010000 -C o  #sauver
+
+tpm2_unseal -c 0x81010000 > passwd  #récuperer
+
 ### Savoir sauver des données et les protéger avec une PCR policy
+
+sha1sum passwd à 8c8393ac8939430753d7cb568e2f2237bc62d683
+
+tpm2_pcrreset 0 tpm2_pcrextend 0:sha1=8c8393ac8939430753d7cb568e2f2237bc62d683
+
+tpm2_createprimary -C o –G rsa2048 -c primary
+
+tpm2_startauthsession -S session
+tpm2_policypcr -S session -l sha1:0 -L pcr0_policy
+tpm2_flushcontext session
+tpm2_create -C primary -g sha256 \
+-u passwd_pcr0.pub -r passwd_pcr0.priv \
+–i passwd -L pcr0_policy
+tpm2_load -C primary -u passwd_pcr0.pub \
+-r passwd_pcr0.priv -c passwd_pcr
+tpm2_evictcontrol -c passwd_pcr0 0x81010000 -C o
+tpm2_flushcontext session
+shred passwd
+rm -f passwd
+tpm2_startauthsession --policy-session -S session
+tpm2_policypcr -S session -l sha1:0
+tpm2_unseal -p session:session -c 0x81010000 > passwd
