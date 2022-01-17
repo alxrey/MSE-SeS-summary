@@ -32,6 +32,8 @@ Si le système n'est pas un routeur, on peut choisir de désactiver le routage e
 \paragraph{ret2libc} : Permet de bypasser la non-éxécution du stack. Consiste à éxécuter du code dans une librairie comme libc.
 \paragraph{ROP} : Return-Oriented Programming. Éxécution de code malveillant à l'intérieur du programme lui-même
 \subsection{Protections}
+\label{sec_protections}
 \paragraph{ASLR} : Address Space Layout Randomization (changement des adresses de stack et heap) afin d'éviter les attaques \verb!ret2libc!
 \paragraph{PIE} : Position de l'éxécutable modifiée pour éviter qu'une attaque soit faite (ou la rendre plus difficile)
+\paragraph{Canary} : Variable qui permet de détecter un dépassement dans le stack
 \end{document}
