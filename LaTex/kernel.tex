@@ -3,4 +3,9 @@
 
 \begin{document}
 \section{Kernel}
+\subsection{Compilation}
+On configure avec \verb!make linux-menuconfig! (ou \verb!make linux-xconfig!) puis on lance une compilation avec \verb!make linux-rebuild!
+\subsection{Busybox}
+Busybox est un éxécutable qui combine beaucoup de fonctions de base (ls, mv, rm, cat, etc...). En mettant toutes ces commandes dans un seul programme, on réduit énormément les redondances et par conséquent la taille de l'éxécutable.\\
+On peut également configurer busybox avec \verb!make busybox-menuconfig! puis le compiler avec \verb!make busybox-rebuild!
 \end{document}
