@@ -82,16 +82,21 @@ démarrage
 ### Firewall Iptables
 
 1. De connaître les principes de Netfilter, iptables
-2. Quelles sont les principales utilisations de netfilter-iptables
-3. Savoir expliquer les notions de chain-tables
-4. Savoir configurer un firewall avec Iptables
-5. Connaitre les modules d’extension principaux de iptables, netfilter
-6. Connaître les NFQUEUE
-7. Savoir expliquer le principe de fonctionnement de knockd et les liens avec iptables
-8. Savoir expliquer le principe de fonctionnement de fwknop et les liens avec iptables
-9. Savoir expliquer l’authentification de fwknop
-10. Savoir expliquer les principes de fail2ban
+2. Savoir expliquer les notions de chain-tables
+3. Savoir configurer un firewall avec Iptables
+4. Connaitre les modules d’extension principaux de iptables, netfilter
+5. Savoir expliquer le principe de fonctionnement de knockd et les liens avec iptables
+6. Savoir expliquer le principe de fonctionnement de fwknop et les liens avec iptables
 
 ### TPM
 
-Voir sur moodle...
+1. Savoir expliquer le principe des chiffrements symétrique, asymétrique, fonctions de hachage, la signature digitale.
+2. Connaitre les différentes implémentations des TPM (discrete, integrated, Hypervisor, Software)
+3.  Connaitre l’architecture interne d’un TPM
+4. Connaitre les différentes hiérarchies des TPM (endorsement, platform, owner, null)
+5. Savoir créer, utiliser des clés avec un TPM 63.
+6. Connaitre les commandes principales d’un TPM (pas tous les paramètres, mais savoir expliquer ce que font ces commandes, être capable de dessiner ce que font les commandes)
+7. Savoir encrypter-décrypter, signer-vérifier avec un TPM
+8. Savoir utiliser les registres PCR
+9. Savoir sauver des données sur le TPM
+10. Savoir sauver des données et les protéger avec une PCR policy
