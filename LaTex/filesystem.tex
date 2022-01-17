@@ -30,7 +30,7 @@ Deux technologies principales sont disponible sur les Flash :
 \subsubsection{Choix d'un FS}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/fileSystemChoice.PNG}
+    \includegraphics[width=0.8\columnwidth]{Figures/fileSystem/fileSystemChoice.PNG}
     \label{fig:fileSystemChoice}
 \end{figure}
 
@@ -82,7 +82,7 @@ This file system is very used in different Linux distribution.
 \end{itemize}
 
 \subsubsection{Ext4 commands}
-\begin{lstlisting}[style=console,label={},caption={}]
+\begin{lstlisting}[style=bash,label={},caption={}]
     # Create a partition (rootfs), start 64MB, length 256MB
     sudo parted /dev/sdb mkpart primary ext4 131072s 655359s
     # Format the partition with the volume label = rootfs
@@ -221,7 +221,7 @@ Scalability:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/fsComp.PNG}
+    \includegraphics[width=0.6\columnwidth]{Figures/fileSystem/fsComp.PNG}
     \label{fig:fsComp}
 \end{figure}
 
@@ -255,7 +255,7 @@ A journalized filesystem keeps track of every modification in a journal in a ded
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/b-tree.png}
+    \includegraphics[width=0.75\columnwidth]{Figures/fileSystem/b-tree.png}
     \caption{B-tree type FS execution}
     \label{fig:b-tree}
 \end{figure}
@@ -271,7 +271,7 @@ blocks are always written to the end.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/log_fs.png}
+    \includegraphics[width=0.6\columnwidth]{Figures/fileSystem/log_fs.png}
     \label{fig:log_fs}
 \end{figure}
 \begin{enumerate}
@@ -296,7 +296,7 @@ blocks are always written to the end.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/squashSystPerf.png}
+    \includegraphics[width=0.75\columnwidth]{Figures/fileSystem/squashSystPerf.png}
     \label{fig:squashSystPerf}
 \end{figure}
 
@@ -308,7 +308,7 @@ blocks are always written to the end.
     \end{lstlisting}
     \begin{figure}[H]
         \centering
-        \includegraphics[width=1\columnwidth]{Figures/fileSystem/msquashfsCom.png}
+        \includegraphics[width=0.75\columnwidth]{Figures/fileSystem/msquashfsCom.png}
         \label{fig:msquashfsCom}
     \end{figure}
     \item The mount command is used with a loopback device in order to read the squashed file system dir.sqsh
@@ -359,7 +359,7 @@ blocks are always written to the end.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/luksFct.png}
+    \includegraphics[width=0.75\columnwidth]{Figures/fileSystem/luksFct.png}
     \label{fig:luksFct}
 \end{figure}
 
@@ -388,7 +388,7 @@ to create virtual layers of block devices. It is required by LVM2 (Logical Volum
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/luksCont.png}
+    \includegraphics[width=0.5\columnwidth]{Figures/fileSystem/luksCont.png}
     \label{fig:luksCont}
 \end{figure}
 
@@ -459,7 +459,7 @@ It is possible to manage a luks partition with:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/luksKeyGen.png}
+    \includegraphics[width=0.75\columnwidth]{Figures/fileSystem/luksKeyGen.png}
     \label{fig:luksKeyGen}
 \end{figure}
 
@@ -476,7 +476,7 @@ Check /proc/crypto which contains supported ciphers and modes (but note it conta
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/luksMastKey.png}
+    \includegraphics[width=0.75\columnwidth]{Figures/fileSystem/luksMastKey.png}
     \label{fig:luksMastKey}
 \end{figure}
 
