@@ -8,4 +8,13 @@ On configure avec \verb!make linux-menuconfig! (ou \verb!make linux-xconfig!) pu
 \subsection{Busybox}
 Busybox est un éxécutable qui combine beaucoup de fonctions de base (ls, mv, rm, cat, etc...). En mettant toutes ces commandes dans un seul programme, on réduit énormément les redondances et par conséquent la taille de l'éxécutable.\\
 On peut également configurer busybox avec \verb!make busybox-menuconfig! puis le compiler avec \verb!make busybox-rebuild!
+\subsection{Attaques}
+\subsubsection{Éxecution sur le stack}
+Si le stack est éxécutable, il est possible d'y placer du code puis de l'éxécuter (ce qui est de moins en moins le cas).
+\subsubsection{ret2libc}
+Permet de bypasser la non-éxécution du stack. Consiste à éxécuter du code dans une librairie comme libc.
+
+
+
+
 \end{document}

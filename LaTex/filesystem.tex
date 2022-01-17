@@ -97,8 +97,8 @@ This file system is very used in different Linux distribution.
     sudo tune2fs -l /dev/sdb1
     sudo dumpe2fs /dev/sdb1
     # mount an ext4 file system
-    mount –t ext4 /dev/sdb1 /mnt/test // with default options
-    mount –t ext4 –o defaults,noatime,discard,nodiratime,data=writeback,acl,user_xattr
+    mount -t ext4 /dev/sdb1 /mnt/test // with default options
+    mount -t ext4 -o defaults,noatime,discard,nodiratime,data=writeback,acl,user_xattr
     /dev/sdb1 /mnt/test
 \end{lstlisting}
 
@@ -122,8 +122,8 @@ Mount options for the journaling (man ext4):
     \item Data=writeback: Data ordering is not preserved - data may be written into the main filesystem after its metadata has been committed to the journal. It guarantees internal filesystem integrity, however it can allow old data to appear in files after a crash and journal recovery.
     \item Discard: Use discard requests to inform the storage that a given range of blocks is no longer in use. A MMC/SD-Card can use this information to free up space internally, using the free blocks for wear-levelling.
     \item acl: Support POSIX Access Control Lists
-    \item user_xattr: Support "user." extended attributes
-    \item default: rw, suid, dev, exec, auto, nouser, and async
+    \item user\_xattr: Support "user." extended attributes
+    \item default : rw, suid, dev, exec, auto, nouser, and async
     \begin{itemize}
         \item rw : read-write
         \item suid : Allow set-user-identifier or set-group-identifier bits
@@ -276,7 +276,7 @@ blocks are always written to the end.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\columnwidth]{Figures/fileSystem/log_fs.png}
-    \caption{log_fs type FS execution}
+    \caption{log\_fs type FS execution}
     \label{fig:log_fs}
 \end{figure}
 \begin{enumerate}
