@@ -6,7 +6,7 @@
 Squelette de rootfs dans \verb!workspace/nano/buildroot/system/skeleton!. Il est ensuite copié dans \verb!buildroot/output/target! et les fichiers nécessaires y sont ensuite ajoutés.\\
 Une fois que tous les fichiers sont ajoutés, une image \verb!rootfs.xxx! est créé (xxx est ext4, squashfs, etc...)
 
-\subsection{1. De connaître les différents types de systèmes de fichiers ainsi que leurs applications}
+\subsection{Types de systèmes de fichier et leurs applications}
 
 Pour les systèmes embarqués, il existe deux catégories de systèmes de fichiers :
 \begin{enumerate}
@@ -23,16 +23,14 @@ Deux technologies principales sont disponible sur les Flash :
 \subsubsection{FS types}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\columnwidth]{Figures/fileSystem/fileSystemType.PNG}
-    \caption{FS type}
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/fileSystemType.PNG}
     \label{fig:fileSystemType}
 \end{figure}
 
 \subsubsection{Choix d'un FS}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\columnwidth]{Figures/fileSystem/fileSystemChoice.PNG}
-    \caption{FS type}
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/fileSystemChoice.PNG}
     \label{fig:fileSystemChoice}
 \end{figure}
 
@@ -52,7 +50,7 @@ FTL is a small controller running a firmware. Its main purpose is to transform l
     \item Wear levelling
 \end{itemize}
 
-\subsection{2. De connaître les caractéristiques des filesystems ext2-3-4, ainsi que les commandes associées}
+\subsection{Caractéristiques des filesystems ext2-3-4 et commande}
 “Filesystem considerations for embedded devices” is a good study about filesystems used on embedded systems.\\
 This file system is very used in different Linux distribution.
 \begin{itemize}
@@ -141,7 +139,7 @@ File \textbf{/etc/fstab} contains descriptive information about the filesystems 
     \item mount pt : mount point for the filesystem
     \item type : the filesystem type
     \item options : mount options associated with the filesystem
-    \item dump : used by the dump (backup filesystem) command to determine whichfilesystems need to be dumped (0 -> no backup)
+    \item dump : used by the dump (backup filesystem) command to determine whichfilesystems need to be dumped (0 = no backup)
     \item pass : used by the fsck (8) program to determine the order in which filesystem checks are done at reboot time. The root filesystem should be specified with 1, and other filesystems should have a 2. if <pass> is not present or equal 0 -> fsck willassume that the filesystem is not checked.
     \item Field options: It contains at least the type of mount plus any additional options appropriate to the filesystem type.
 \end{itemize}
@@ -155,7 +153,7 @@ Common for all types of file system are the options (man mount) :
 \end{itemize}
 
 
-\subsection{3. D’expliquer les différents "files systems" utilisés dans les systèmes embarqués (ext2-3-4, BTRFS, F2FS, NILFS2, XFS, ZFS, …)}
+\subsection{Autre type de FS}
 
 \subsubsection{BTRFS (B-Tree filesystem)}
 \begin{itemize}
@@ -223,12 +221,11 @@ Scalability:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\columnwidth]{Figures/fileSystem/fsComp.PNG}
-    \caption{FS Comparaison}
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/fsComp.PNG}
     \label{fig:fsComp}
 \end{figure}
 
-\subsection{4. Expliquer les files system de type Journal, B-Tree/CoW, log filesystem}
+\subsection{Architecture des FS}
 
 \subsubsection{Journalized filesystem}
 A journalized filesystem keeps track of every modification in a journal in a dedicated area
@@ -258,7 +255,7 @@ A journalized filesystem keeps track of every modification in a journal in a ded
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\columnwidth]{Figures/fileSystem/b-tree.png}
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/b-tree.png}
     \caption{B-tree type FS execution}
     \label{fig:b-tree}
 \end{figure}
@@ -274,8 +271,7 @@ blocks are always written to the end.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\columnwidth]{Figures/fileSystem/log_fs.png}
-    \caption{log\_fs type FS execution}
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/log_fs.png}
     \label{fig:log_fs}
 \end{figure}
 \begin{enumerate}
@@ -284,7 +280,7 @@ blocks are always written to the end.
     \item Garbage copies block2 and 4, and frees old block1-2-3-4
 \end{enumerate}
 
-\subsection{5. De connaître les caractéristiques du filesystem Squashfs, ainsi que les commandes associées}
+\subsection{Caractéristiques de Squashfs et commande}
 \begin{itemize}
     \item Squashfs is a compressed read-only filesystem for Linux
     \item Squashfs versions
@@ -300,7 +296,7 @@ blocks are always written to the end.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\columnwidth]{Figures/fileSystem/squashSystPerf.png}
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/squashSystPerf.png}
     \label{fig:squashSystPerf}
 \end{figure}
 
@@ -312,7 +308,7 @@ blocks are always written to the end.
     \end{lstlisting}
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.7\columnwidth]{Figures/fileSystem/msquashfsCom.png}
+        \includegraphics[width=1\columnwidth]{Figures/fileSystem/msquashfsCom.png}
         \label{fig:msquashfsCom}
     \end{figure}
     \item The mount command is used with a loopback device in order to read the squashed file system dir.sqsh
@@ -330,7 +326,7 @@ blocks are always written to the end.
     \end{lstlisting}
 \end{enumerate}
 
-\subsection{6. De connaître les caractéristiques du filesystem tmpfs, ainsi que les commandes associées}
+\subsection{Caractéristiques de tmpfs et commandes}
 \begin{itemize}
     \item Tmpfs is a file system which keeps all files in virtual memory
     \item Everything in tmpfs is temporary in the sense that no files will be created on your hard drive. If you unmount a tmpfs instance, everything stored therein is lost.
@@ -355,16 +351,273 @@ blocks are always written to the end.
     \end{lstlisting}
 \end{itemize}
 
-\subsection{7. De connaître les caractéristiques du filesystem LUKS, ainsi que les commandes associées}
+\subsection{Caractéristiques de LUKSfs et commandes}
+\begin{enumerate}
+	\item Data in the LUKS partition is encrypted
+	\item Data used in the user space is decrypted by dmcrypt
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/luksFct.png}
+    \label{fig:luksFct}
+\end{figure}
+
+\begin{itemize}
+\item LUKS (Linux Unified Key Setup) is the standard for Linux hard disk encryption
+\item By providing a standard on-disk-format, it does not only facilitate compatibility among distributions, but also provides secure management of multiple user passwords
+\item In contrast to existing solution, LUKS stores all necessary setup information in the partition header, enabling the user to transport or migrate his data seamlessly
+\item LUKS - dmcrypt crypts an entire partition
+\item Luks features
+\begin{itemize}
+\item compatibility via standardization
+\item secure against attacks
+\item support for multiple keys
+\item effective passphrase revocation
+\item free
+\end{itemize}
+\item cryptsetup is a utility used to configure dmcrypt
+\item cryptsetup uses the /dev/random and /dev/urandom node file
+\item dmcrypt (Device-mapper) crypts target and provides transparent encryption of block
+devices using the kernel crypto API (kernel configuration, Cryptographic API)
+\item Device-mapper is included in the Linux 2.6 and 3.x kernel that provides a generic way
+to create virtual layers of block devices. It is required by LVM2 (Logical Volume Management)
+\item The user can basically specify one of the symmetric ciphers, an encryption mode, a key (of any allowed size), an iv generation mode and then the user can create a new block device node file in /dev/mapper
+\item All data written to this device will be encrypted and all data read from this device will be decrypted
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/luksCont.png}
+    \label{fig:luksCont}
+\end{figure}
+
+\subsubsection{Create LUKS partition}
+\begin{lstlisting}[style=console,label={},caption={}]
+	# sudo cryptsetup --debug --pbkdf pbkdf2 luksFormat $DEVICE
+	Be careful, type yes in UPPERCASE
+	Or create a LUKS partition for the system with enough memory
+	# sudo cryptsetup --debug luksFormat $DEVICE
+	Be careful, type yes in UPPERCASE
+	Dump the header information of a LUKS device
+	# sudo cryptsetup luksDump $DEVICE
+	Create a mapping /dev/mapper/usrfs1 and ask the passphrase
+	# sudo cryptsetup --debug open --type luks $DEVICE usrfs1
+	Show the node file
+	# ls /dev/mapper/
+	Format the LUKS partition as ext4 partition
+	# sudo mkfs.ext4 /dev/mapper/usrfs1
+	Mount the LUKS partition to /mnt/usrfs
+	# sudo mkdir /mnt/usrfs
+	# sudo mount /dev/mapper/usrfs1 /mnt/usrfs
+	Work with the LUKS partition
+	# ls /mnt/usrfs
+	# copy files to /mnt/usrfs
+	Unmount the LUKS partition
+	# sudo umount /dev/mapper/usrfs1
+	Removes the existing mapping usrfs1 and wipes the key from kernel memory
+	# sudo cryptosetup close usrfs1
+	dmsetup: low level logical volume management
+	# dmsetup info -C
+	# dmsetup remove -f usrfs1
+\end{lstlisting}
+
+\subsubsection{Use LUKS partition}
+\begin{lstlisting}[style=console,label={},caption={}]
+Create a mapping /dev/mapper/usrfs1 and ask the passphrase
+# sudo cryptsetup --debug open --type luks $DEVICE usrfs1
+Mount the LUKS partition to /mnt/usrfs
+# sudo mount /dev/mapper/usrfs1 /mnt/usrfs
+Unmount the LUKS partition
+# umount /dev/mapper/usrfs1
+Removes the existing mapping usrfs1 and wipes the key from kernel memory
+# cryptosetup close usrfs1
+It is possible to manage a luks partition with:
+# dmsetup info -c
+# dmsetup remove -f usrfs1
+\end{lstlisting}
 
 
-\subsection{8. Savoir expliquer la gestion des clés de LUKS 42}
+\subsection{Gestion des clés de LUKS 42}
+\subsubsection{LUKS - key generation}
+\begin{itemize}
+\item LUKS uses the TKS1 template in order to generate secure key
+\item The key is derived from a passphrase
+\item LUKS supports multiple keys/passphrases
+\item TKS1 uses Argon2 or PBKDF2 (Password-Based Key Derivation Function 2) method in order to provide a better resistance against brute force attacks based on entropy weak user passphrase.
+\item TKS1 uses two level hierarchy of cryptographic keys to provide the ability to change passphrases
+\end{itemize}
 
+\textbf{The system initialization is straight forward :}
+\begin{itemize}
+\item A master key is generated
+\item Passphrase, Salt, iterations and other values are inputs of the functions Argon2 or PBKDF2
+\item A derived passphrase key is computed by Argon2 or PBKDF2
+\item The master key is encrypted by the derived passphrase key.
+\item The encrypted master key, the iteration rate and the salt are stored
+\end{itemize}
 
-\subsection{9. De connaître les caractéristiques du filesystem InitramFS, ainsi que les commandes associées}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/luksKeyGen.png}
+    \label{fig:luksKeyGen}
+\end{figure}
 
+\begin{lstlisting}[style=console,label={},caption={}]
+Add a new passphrase to the LUKS partition($DEVICE=/dev/mmcblk0p3 (nanopi) or /dev/sdc3(PC))
+# cryptsetup luksAddKey $DEVICE
+Dump the header information of a LUKS device
+# cryptsetup luksDump $DEVICE
+Dump the encrypted master key of a LUKS device
+# cryptsetup luksDump -dump-master-key $DEVICE
+Check /proc/crypto which contains supported ciphers and modes (but note it contains only currently loaded crypto API modules).
+# cat /proc/crypto
+\end{lstlisting}
 
-\subsection{10. De savoir créer un initramFS}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/luksMastKey.png}
+    \label{fig:luksMastKey}
+\end{figure}
+
+\subsection{Caractéristiques de InitramFS et commandes}
+
+\begin{itemize}
+\item initramfs is a root filesystem that is loaded at an early stage of the boot
+process.
+\item It is the successor of initrd.
+\item It provides early userspace commands which lets the system do things that
+the kernel cannot easily do by itself during the boot process.
+\item Using initramfs is optional.
+\item Boot without initramfs:
+\begin{itemize}
+\item By default, the kernel initializes hardware using built-in drivers, mounts the specified root partition, loads the rootfs and starts the init scritps
+\item Init scripts can load additional modules and starts services until it eventually allows users to log in. This is a good default behavior and sufficient for many users
+\end{itemize}
+\item An initramfs is generally used for advanced requirements; for users who need to perform certain tasks as early as possible, even before the rootfs is mounted.
+\end{itemize}
+
+\subsubsection{Boot sequence, with initramfs}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/initRamFsBootSeq.png}
+    \label{fig:initRamFsBootSeq}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/initRamFsBootSeq2.png}
+    \label{fig:initRamFsBootSeq2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/initRamFsBootSeq3.png}
+    \label{fig:initRamFsBootSeq3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/initRamFsBootSeq4.png}
+    \label{fig:initRamFsBootSeq4}
+\end{figure}
+
+\subsection{Création d'un initramFS}
+On PC, NanoPi rootfs is in this directory: HOME/workspace/nano/buildroot/output/target/\\
+\textbf{Principle to build an initramfs :}
+\begin{enumerate}
+\item Copy the right files into a directory (\$HOME/ramfs)
+\item Copy these files in a cpio archive file
+\item Compress this file
+\item Add the uboot header
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/builtInitRamFs.png}
+    \label{fig:builtInitRamsFs}
+\end{figure}
+
+\subsection{Init script}
+\begin{lstlisting}[style=console,label={},caption={}]
+#!/bin/busybox sh
+# Init script in the initRamFS
+mount -t proc none /proc
+mount -t sysfs none /sys
+mount -t ext4 /dev/mmcblk0p2 /newroot
+mount -n -t devtmpfs devtmpfs /newroot/dev
+exec switch_root /newroot /sbin/init
+\end{lstlisting}
+
+\subsubsection{Shared library dependency}
+\begin{itemize}
+\item Generally, programs are dynamically linked (other possibility: statically linked)
+\item A dynamically program must have all necessary libraries
+\item Example (on PC) for the /bin/ls program : \textbf{ldd ls}
+\end{itemize}
+
+\begin{lstlisting}[style=console,label={lst:init_ramfs},caption={}]
+#!/bin/sh
+ROOTFSLOC=ramfs
+HOME=/home/lmi
+echo "--------------------- Begin -----------------------"
+cd $HOME
+mkdir $ROOTFSLOC
+mkdir -p $ROOTFSLOC/{bin,dev,etc,home,lib,lib64,newroot,proc,root,sbin,sys}
+echo "-------------------- Cpy /dev --------------------"
+cd $ROOTFSLOC/dev
+sudo mknod null c 1 3
+...
+sudo mknod mmcblk0p b 179 0
+...
+sudo mknod ttyS0 c 4 64
+...
+sudo mknod ttyS3 c 4 67
+echo "-------------------- Cpy /bin -------------------"
+cd ../bin
+cp ~/workspace/nano/buildroot/output/target/bin/busybox .
+ln -s busybox ls
+...
+ln -s busybox dmesg
+cp ~/workspace/nano/buildroot/output/target/usr/bin/strace .
+echo "------------------ Cpy /sbin -------------------"
+cd ../sbin
+ln -s ../bin/busybox switch_root
+echo "-------------------- Cpy /lib64 ----------------"
+cd ../lib64
+...
+cp ~/workspace/nano/buildroot/output/target/lib64/libc-2.31.so .
+ln -s libresolv-2.31.so libresolv.so.2
+ln -s libc-2.31.so libc.so.6
+ln -s ../lib64/ld-2.31.so ld-linux-aarch64.so.1
+echo "-------------------- Cpy /lib -----------------"
+cd ../lib
+cp ~/workspace/nano/buildroot/output/target/lib64/ld-2.31.so .
+ln -s ../lib64/ld-2.31.so ld-linux-aarch64.so.1
+echo "----------------- Create /init ----------------"
+cd ..
+cat > init << endofinput
+#!/bin/busybox sh
+mount -t proc none /proc
+mount -t sysfs none /sys
+mount -t ext4 /dev/mmcblk0p2 /newroot
+mount -n -t devtmpfs devtmpfs /newroot/dev
+exec sh
+#exec switch_root /newroot /sbin/init
+endofinput
+######
+chmod 755 init
+cd ..
+sudo chown -R 0:0 $ROOTFSLOC
+echo "-------------- cpio / gzip / mkimage ---------"
+cd $ROOTFSLOC
+find . | cpio --quiet -o -H newc > ../Initrd
+cd ..
+gzip -9 -c Initrd > Initrd.gz
+mkimage -A arm -T ramdisk -C none -d Initrd.gz uInitrd
+echo "----------------- DONE -----------------------"
+\end{lstlisting}
 
 
 \end{document}
