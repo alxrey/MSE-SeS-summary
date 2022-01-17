@@ -51,21 +51,18 @@ démarrage
 11. De sécuriser une application
 12. De contrôler le démarrage de Linux
 
+### Filesystem
 
-### Hardening Linux
-
-1. De contrôler l’intégrité d’un package, d’un programme
-2. De configurer un nouveau package, programme
-3. De cross-compiler un programme
-4. De contrôler les services, les ports ouverts
-5. De contrôler les « file systems »
-6. De contrôler les permissions des fichiers, répertoires
-7. De sécuriser le réseau
-8. De contrôler-sécuriser les comptes utilisateurs
-9. De limiter le login root
-10. De sécuriser le noyau
-11. De sécuriser une application
-12. De contrôler le démarrage de Linux
+1. De connaître les différents types de systèmes de fichiers ainsi que leurs applications
+2. De connaître les caractéristiques des filesystems ext2-3-4, ainsi que les commandes associées
+3. D’expliquer les différents « files systems » utilisés dans les systèmes embarqués (ext2-3-4, BTRFS, F2FS, NILFS2, XFS, ZFS, …)
+4. Expliquer les « files system » de type Journal, B_Tree/CoW, log filesystem
+5. De connaître les caractéristiques du filesystem Squashfs, ainsi que les commandes associées
+6. De connaître les caractéristiques du filesystem tmpfs, ainsi que les commandes associées
+7. De connaître les caractéristiques du filesystem LUKS, ainsi que les commandes associées
+8. Savoir expliquer la gestion des clés de LUKS 42. 
+9. De connaître les caractéristiques du filesystem InitramFS, ainsi que les commandes associées
+10. De savoir créer un initramFS
 
 
 ### Filesystems security
