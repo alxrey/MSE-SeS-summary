@@ -1,5 +1,6 @@
 \documentclass[resume]{subfiles}
 
+
 \begin{document}
 \section{File system}
 \subsection{Génération}
@@ -9,18 +10,13 @@ Une fois que tous les fichiers sont ajoutés, une image \verb!rootfs.xxx! est cr
 \subsection{Types de systèmes de fichier et leurs applications}
 
 Pour les systèmes embarqués, il existe deux catégories de systèmes de fichiers :
-\begin{enumerate}
-    \item Volatiles en RAM
-    \item Persitants sur des Flash (NOR et de plus en plus NAND)
-\end{enumerate}
+- Volatiles en RAM
+- Persitants sur des Flash (NOR et de plus en plus NAND)
 
 Deux technologies principales sont disponible sur les Flash :  
-\begin{itemize}
-    \item MTD (Memory Technology Device)
-    \item MMC/SD-Card (Multi-Media-Card / Secure Digital Card)
-\end{itemize}
+- soit les MTD (Memory Technology Device)
+- les MMC/SD-Card (Multi-Media-Card / Secure Digital Card)
 
-\subsubsection{FS types}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\columnwidth]{Figures/fileSystem/fileSystemType.PNG}
@@ -334,22 +330,6 @@ blocks are always written to the end.
     \item If you compare it to ramfs you gain swapping and limit checking. Another similar thing is the RAM disk (/dev/ram*), which simulates a fixed size hard disk in physical RAM, where you have to create an ordinary filesystem on top. Ramdisks cannot swap and you do not have the possibility to resize them
 \end{itemize}
 
-\subsubsection{Devtmpfs}
-\begin{itemize}
-    \item devtmpfs is a file system with automatically populates nodes files (/dev/…) known by the kernel.
-    \item This means, it is not necessary to have udev running nor to create a static /dev layout with additional, unneeded and not present device nodes.
-    \item Instead the kernel populates the appropriate information based on the known devices.
-    \item The kernel executes this command : mount -n -t devtmpfs devtmpfs /dev
-    \item /dev is automatically populated by the kernel with its known devices
-    \begin{lstlisting}[style=console,label={},caption={}]
-        # ls /dev
-        autofs ptypf tty47
-        btrfs-control random tty48
-        bus rtc0 tty49
-        console shm tty5
-        cpu_dma_latency snapshot tty50
-    \end{lstlisting}
-\end{itemize}
 
 \subsection{Caractéristiques de LUKSfs et commandes}
 \begin{enumerate}
