@@ -45,7 +45,17 @@ En deux parties: 1. Calcul du HASH puis encryptage avec clé privée. **(figure 
 
 ### Savoir créer, utiliser des clés avec un TPM
 
+**(figure createKey)** 
+
 ### Connaitre les commandes principales d’un TPM (pas tous les paramètres, mais savoir expliquer ce que font ces commandes, être capable de dessiner ce que font les commandes)
+
+- `tpm2_createprimary -C o -G rsa2048 -c o_prim` // créer un clé primaire owner
+- `tpm2_getcap handles-transient` // voir clé dans la RAM
+- `tpm2_getcap handles-persistent` // voir clé dans la NV-RAM
+- `tpm2_evictcontrol –c o_primary.ctx` // sauver une clé en NV-RAM
+- `tpm2_flushcontext` -t // effacer toute la RAM
+- `tpm2_create -C o_prim -G rsa2048 -u child_pub –r child_priv` // créer clé enfant
+- `tpm2_load -C o_prim -u child_pub -r child_priv -c child` // charger clé enfant
 
 ### Savoir encrypter-décrypter, signer-vérifier avec un TPM
 
