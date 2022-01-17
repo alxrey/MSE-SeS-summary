@@ -19,6 +19,7 @@ Dans le répertoire \verb!buildroot!, effectuer la commande \verb!make menuconfi
 La configuration permet notamment de 
 \begin{enumerate}
 \item Modifier le rootfs
+\end{enumerate}
 \subsection{Carte SD}
 \begin{figure}[H]
 \centering
@@ -40,34 +41,28 @@ Les fichiers pour l'initialisation sont\\
 \verb!sunxi-spl.bin! & Secondary Program Loader
 \end{tabular}
 \end{table}
-\verb!boot.vfat! contient \verb!Image!, \verb!nanopi-neo-plus2.dtb! et \verb!boot.scr!
+\verb!boot.vfat! contient \verb!Image!, \verb!nanopi-neo-plus2.dtb! et \verb!boot.scr!. \verb!boot.vfat! (ou \verb!boot.ext4!) permet de créer \verb!BOOT! sur la carte SD
+\subsubsection{rootfs}
+Contient \verb!/bin!, \verb!/sbin!, \verb!/root!, \verb!/etc!, etc...
 \subsubsection{boot.scr}
 Le fichier \verb!boot.scr! est utilisé par u-boot pour charger le kernel Linux. Il est créé avec la commande \verb!mkimage!
 \subsubsection{boot.cmd}
 \verb!boot.cmd! contient des informations de démarrage, notamment les emplacements des différents l'emplacement de \verb!nanopi-neo-plus2.dtb!, du kernel et (si présent) de l'initramfs
+
 \subsection{Séquence de démarrage (6 phases)}
 \begin{enumerate}
-\item Lorsque le $\mu$P est mis sous tension, le code stocké dans son BROM va charger 
-dans ses 32KiB de SRAM interne le firmware \verb!sunxi-spl! stocké dans le 
-secteur no 16 de la carte SD / eMMC et l’exécuter. 
-q Le firmware \verb!sunxi-spl! (Secondary Program Loader) initialise les couches 
-basses du $\mu$P, puis charge l'U-Boot dans la RAM du $\mu$P avant de le lancer.
-q L'U-Boot va effectuer les initialisations hardware nécessaires (horloges, 
-contrôleurs, …) avant de charger l’image non compressées du noyau Linux dans 
-la RAM, le fichier \verb!Image!, ainsi que le fichier de configuration FDT (flattened
-device tree).
-q L'U-Boot lancera le noyau Linux en lui passant les arguments de boot (bootargs).
-q Le noyau Linux procédera à son initialisation sur la base des bootargs et des 
-éléments de configuration contenus dans le fichier FDT (sun50i-h5-nanopi-neo plus2.dtb).
-q Le noyau Linux attachera les systèmes de fichiers (rootfs, tmpfs, usrfs, …) et 
-poursuivra son exécution.
+\item Lorsque le $\mu$P est mis sous tension, le code stocké dans son BROM va charger dans ses 32KiB de SRAM interne le firmware \verb!sunxi-spl! stocké dans le secteur no 16 de la carte SD / eMMC et l’exécuter. 
+\item Le firmware \verb!sunxi-spl! (Secondary Program Loader) initialise les couches basses du $\mu$P, puis charge l'U-Boot dans la RAM du $\mu$P avant de le lancer.
+\item L'U-Boot va effectuer les initialisations hardware nécessaires (horloges, contrôleurs, …) avant de charger l’image non compressées du noyau Linux dans la RAM, le fichier \verb!Image!, ainsi que le fichier de configuration FDT (flattened device tree).
+\item L'U-Boot lancera le noyau Linux en lui passant les arguments de boot (bootargs)
+\item Le noyau Linux procédera à son initialisation sur la base des bootargs et des éléments de configuration contenus dans le fichier FDT (sun50i-h5-nanopi-neo plus2.dtb).
+\item Le noyau Linux attachera les systèmes de fichiers (rootfs, tmpfs, usrfs, …) et poursuivra son exécution.
 \end{enumerate}
 
-
-
-
-
-\end{enumerate}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{img_4.png}
+\end{figure}
 
 
 
