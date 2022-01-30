@@ -609,11 +609,22 @@ mkimage -A arm -T ramdisk -C none -d Initrd.gz uInitrd
 
 \subsection{Files permissions}
 Aller voir la section \ref{sec_filePerm}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\columnwidth]{Figures/fileSystem/fileperm.png}
+    \label{fig:fileperm}
+\end{figure}
 
 \subsection{Sécurisation des comptes utilisateurs}
 Aller voir la section \ref{sec_usrPerm}
 
 \subsection{Real-effective userID and groupID}
+\begin{lstlisting}[style=bash]
+chmod \textbf{7}744 file #SUID + SGID + sticky bits = 1
+ls -al
+-rwsr-Sr-T 1 test test 3438 2011-12-19 16:14 file #s or t lower case = with x bit
+\end{lstlisting}
+Chaque processus possède un effective userID et un real userID pareil pour le groupID. Linux utilise seulement le effective userID. Si le bit userID est actif alors le fichier exécuter prend les droits du propriétaire du fichier.
 
 \subsection{ACL - Access Control List}
 Les filesystems ext3,ext4,tmpfs,btrfs autorise les ACL
@@ -621,6 +632,10 @@ u: : User, g: : Group, o: : Other
 \begin{lstlisting}[style=bash]
 setfacl -m u::rwx,g::r--,o:--- test
 setfacl -Rm u:user1:rw TestDirectory # -R: Recursive
+# remove
+setfacl -b test #The file test has no ACL
+setfacl -x u:user1,g:group1 test #The file test has no rights for user1
+and group1
 \end{lstlisting}
 
 \subsection{Attributs particuliers des FS ext2-3-4}
@@ -645,7 +660,7 @@ the ext3 or ext4 journal before being written to the file itself
 \end{itemize}
 
 \subsection{Rechercher de permission de fichier faibles}
-\begin{lstlisting}[style=bash,label={lst:attribus},caption={}]
+\begin{lstlisting}[style=bash,label={lst:perm},caption={}]
 find . -perm 200 #file permissions = 200
 find . -perm -220 #write bit for user and group = 1
 find . -perm /220 #write bit for user or group = 1
@@ -661,5 +676,5 @@ find . -perm +220 #write bit for user or group = 1 (like /220)
 \end{itemize}
 
 \subsection{Mémorisation des mots de passes}
-
+Les mot de passes sont sotckés en HASH (preuve sans connaissance)
 \end{document}
