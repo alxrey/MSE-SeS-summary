@@ -35,7 +35,7 @@ openssl enc -aes-256-cbc -d -in t.enc -out t.txt #decrypt
 Transforme un texte, document en un nombre de N bits unique (SHA-2, SHA-3, Blake2).
 
 \verb!md5sum file => a6a0e8d0522...! 
-où
+où\\
 \verb!openssl dgst -md5 file!  
 
 \subsubsection{signature}
@@ -70,12 +70,16 @@ En deux parties: 1. Calcul du HASH puis encryptage avec clé privée.
 \end{itemize}
 
 \subsection{Créer, utiliser clés}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\columnwidth]{Figures/TPM/createKey.png}
-\end{figure}
-
+\begin{center}
+\verb!tpm2_createprimary -C <A> -G rsa2048 -c <B>.ctx!\\
+\begin{tabular}{cc}
+$<$A$>$ & $<$B$>$ \\\hline
+e & \verb!e_primary!\\
+p & \verb!p_primary!\\
+o & \verb!o_primary!\\
+n & \verb!n_primary!
+\end{tabular}
+\end{center}
 \subsection{Commandes principales}
 \begin{lstlisting}[style=bash]
 

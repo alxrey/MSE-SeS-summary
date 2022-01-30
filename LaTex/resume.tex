@@ -1,16 +1,26 @@
 \documentclass[]{article}
 
 \usepackage[dvipsnames]{xcolor}
-\usepackage[landscape,margin=1cm]{geometry}
+\usepackage[landscape,margin=1.5cm, a4paper]{geometry}
 \usepackage{multicol}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \pagestyle{empty}
 \usepackage{float}
 \usepackage{enumitem}
-\setlist[itemize]{itemsep=0pt, leftmargin=0.5cm}
+\setlist[itemize]{nosep, itemsep=0pt, leftmargin=0.5cm}
+\setlist[enumerate]{nosep, itemsep=0pt, leftmargin=0.5cm}
 \usepackage{physics}
 \usepackage{subfiles}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0em}
+\usepackage{titlesec}
+\titlespacing*{\section}{1pt}{1ex plus 1ex minus .2ex}{1ex plus .2ex}
+\titlespacing*{\subsection}{1pt}{1ex plus 1ex minus .2ex}{1ex plus .2ex}
+\titlespacing*{\subsubsection}{1pt}{1ex plus 1ex minus .2ex}{1ex plus .2ex}
+\titlespacing*{\paragraph}{0pt}{1ex plus 1ex minus .2ex}{1ex plus .2ex}
+\renewcommand{\baselinestretch}{0.3}
+\setlength{\belowcaptionskip}{-20pt}
 
 \input{listings.tex}
 
@@ -42,6 +52,6 @@
 \subfile{filesystem}
 \subfile{firewall}
 \subfile{tpm}
-\end{multicols}
 \subfile{autres}
+\end{multicols}
 \end{document}

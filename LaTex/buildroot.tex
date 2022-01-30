@@ -31,7 +31,7 @@ La configuration permet notamment de
 \end{center}
 Les fichiers pour l'initialisation sont\\
 \begin{table}[H]
-\begin{tabular}{ll}
+\begin{tabular}{lp{4cm}}
 \verb!rootfs.ext! & Root file system\\
 \verb!Image! & Noyau Linux\\
 \verb!nanopo-neo-plus2.dtb! & Flattened device tree\\
@@ -58,12 +58,5 @@ Le fichier \verb!boot.scr! est utilisé par u-boot pour charger le kernel Linux.
 \item Le noyau Linux procédera à son initialisation sur la base des bootargs et des éléments de configuration contenus dans le fichier FDT (sun50i-h5-nanopi-neo plus2.dtb).
 \item Le noyau Linux attachera les systèmes de fichiers (rootfs, tmpfs, usrfs, …) et poursuivra son exécution.
 \end{enumerate}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\columnwidth]{img_4.png}
-\end{figure}
-
-
-
+Voir \ref{fig:initRamFsBootSeq} pour l'illustration
 \end{document}

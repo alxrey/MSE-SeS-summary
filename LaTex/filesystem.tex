@@ -3,7 +3,7 @@
 \begin{document}
 \section{File system}
 \subsection{Génération}
-Squelette de rootfs dans \verb!workspace/nano/buildroot/system/skeleton!. Il est ensuite copié dans \verb!buildroot/output/target! et les fichiers nécessaires y sont ensuite ajoutés.\\
+Squelette de rootfs dans \\ \verb!workspace/nano/buildroot/system/skeleton!. Il est ensuite copié dans \verb!buildroot/output/target! et les fichiers nécessaires y sont ensuite ajoutés.\\
 Une fois que tous les fichiers sont ajoutés, une image \verb!rootfs.xxx! est créé (xxx est ext4, squashfs, etc...)
 
 \subsection{Types de systèmes de fichier et leurs applications}
@@ -74,8 +74,8 @@ This file system is very used in different Linux distribution.
         \item Ext4 is included in the kernel 2.6.28
         \item Ext4 supports Large file system:
         \begin{itemize}
-            \item Volume max: $2^60$ bytes
-            \item File max: $2^40$ bytes
+            \item Volume max: $2^{60}$ bytes
+            \item File max: $2^{40}$ bytes
         \end{itemize}
         \item Ext4 uses extents (as opposed to the traditional block mapping scheme used by ext2 and ext3), which improves performance when using large files and reduces metadata overhead for large files
     \end{itemize}
@@ -193,7 +193,7 @@ XFS was developed by SGI in 1993.
     \item Does not seem to be handling power loss (standby state) well
 \end{itemize}
 
-\subsubsection{ZFS (Zettabyte ($10^21$)File System)}
+\subsubsection{ZFS (Zettabyte ($10^{21}$)File System)}
 ZFS is a combined file system and logical volume manager designed by Sun Microsystems.
 \begin{itemize}
     \item ZFS is a B-Tree file system
@@ -221,7 +221,7 @@ Scalability:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/fsComp.PNG}
+    \includegraphics[width=0.6\columnwidth]{Figures/fileSystem/fsComp.PNG}
     \label{fig:fsComp}
 \end{figure}
 
@@ -359,7 +359,7 @@ blocks are always written to the end.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/luksFct.png}
+    \includegraphics[width=0.6\columnwidth]{Figures/fileSystem/luksFct.png}
     \label{fig:luksFct}
 \end{figure}
 
@@ -388,53 +388,53 @@ to create virtual layers of block devices. It is required by LVM2 (Logical Volum
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/luksCont.png}
+    \includegraphics[width=0.75\columnwidth]{Figures/fileSystem/luksCont.png}
     \label{fig:luksCont}
 \end{figure}
 
 \subsubsection{Create LUKS partition}
-\begin{lstlisting}[style=console,label={},caption={}]
-	# sudo cryptsetup --debug --pbkdf pbkdf2 luksFormat $DEVICE
-	Be careful, type yes in UPPERCASE
-	Or create a LUKS partition for the system with enough memory
-	# sudo cryptsetup --debug luksFormat $DEVICE
-	Be careful, type yes in UPPERCASE
-	Dump the header information of a LUKS device
-	# sudo cryptsetup luksDump $DEVICE
-	Create a mapping /dev/mapper/usrfs1 and ask the passphrase
-	# sudo cryptsetup --debug open --type luks $DEVICE usrfs1
-	Show the node file
-	# ls /dev/mapper/
-	Format the LUKS partition as ext4 partition
-	# sudo mkfs.ext4 /dev/mapper/usrfs1
-	Mount the LUKS partition to /mnt/usrfs
-	# sudo mkdir /mnt/usrfs
-	# sudo mount /dev/mapper/usrfs1 /mnt/usrfs
-	Work with the LUKS partition
-	# ls /mnt/usrfs
-	# copy files to /mnt/usrfs
-	Unmount the LUKS partition
-	# sudo umount /dev/mapper/usrfs1
-	Removes the existing mapping usrfs1 and wipes the key from kernel memory
-	# sudo cryptosetup close usrfs1
-	dmsetup: low level logical volume management
-	# dmsetup info -C
-	# dmsetup remove -f usrfs1
+\begin{lstlisting}[style=bash,label={},caption={}]
+sudo cryptsetup --debug --pbkdf pbkdf2 luksFormat $DEVICE
+# Be careful, type yes in UPPERCASE
+# Or create a LUKS partition for the system with enough memory
+sudo cryptsetup --debug luksFormat $DEVICE
+# Be careful, type yes in UPPERCASE
+# Dump the header information of a LUKS device
+sudo cryptsetup luksDump $DEVICE
+# Create a mapping /dev/mapper/usrfs1 and ask the passphrase
+sudo cryptsetup --debug open --type luks $DEVICE usrfs1
+# Show the node file
+ls /dev/mapper/
+# Format the LUKS partition as ext4 partition
+sudo mkfs.ext4 /dev/mapper/usrfs1
+# Mount the LUKS partition to /mnt/usrfs
+sudo mkdir /mnt/usrfs
+sudo mount /dev/mapper/usrfs1 /mnt/usrfs
+# Work with the LUKS partition
+ls /mnt/usrfs
+copy files to /mnt/usrfs
+# Unmount the LUKS partition
+sudo umount /dev/mapper/usrfs1
+# Removes the existing mapping usrfs1 and wipes the key from kernel memory
+sudo cryptosetup close usrfs1
+# dmsetup: low level logical volume management
+dmsetup info -C
+dmsetup remove -f usrfs1
 \end{lstlisting}
 
 \subsubsection{Use LUKS partition}
-\begin{lstlisting}[style=console,label={},caption={}]
-Create a mapping /dev/mapper/usrfs1 and ask the passphrase
-# sudo cryptsetup --debug open --type luks $DEVICE usrfs1
-Mount the LUKS partition to /mnt/usrfs
-# sudo mount /dev/mapper/usrfs1 /mnt/usrfs
-Unmount the LUKS partition
-# umount /dev/mapper/usrfs1
-Removes the existing mapping usrfs1 and wipes the key from kernel memory
-# cryptosetup close usrfs1
-It is possible to manage a luks partition with:
-# dmsetup info -c
-# dmsetup remove -f usrfs1
+\begin{lstlisting}[style=bash,label={},caption={}]
+# Create a mapping /dev/mapper/usrfs1 and ask the passphrase
+sudo cryptsetup --debug open --type luks $DEVICE usrfs1
+# Mount the LUKS partition to /mnt/usrfs
+sudo mount /dev/mapper/usrfs1 /mnt/usrfs
+# Unmount the LUKS partition
+umount /dev/mapper/usrfs1
+# Removes the existing mapping usrfs1 and wipes the key from kernel memory
+cryptosetup close usrfs1
+#It is possible to manage a luks partition with
+dmsetup info -c
+dmsetup remove -f usrfs1
 \end{lstlisting}
 
 
@@ -464,14 +464,14 @@ It is possible to manage a luks partition with:
 \end{figure}
 
 \begin{lstlisting}[style=console,label={},caption={}]
-Add a new passphrase to the LUKS partition($DEVICE=/dev/mmcblk0p3 (nanopi) or /dev/sdc3(PC))
-# cryptsetup luksAddKey $DEVICE
-Dump the header information of a LUKS device
-# cryptsetup luksDump $DEVICE
-Dump the encrypted master key of a LUKS device
-# cryptsetup luksDump -dump-master-key $DEVICE
-Check /proc/crypto which contains supported ciphers and modes (but note it contains only currently loaded crypto API modules).
-# cat /proc/crypto
+# Add a new passphrase to the LUKS partition($DEVICE=/dev/mmcblk0p3 (nanopi) or /dev/sdc3(PC))
+cryptsetup luksAddKey $DEVICE
+# Dump the header information of a LUKS device
+cryptsetup luksDump $DEVICE
+# Dump the encrypted master key of a LUKS device
+cryptsetup luksDump -dump-master-key $DEVICE
+# Check /proc/crypto which contains supported ciphers and modes (but note it contains only currently loaded crypto API modules).
+cat /proc/crypto
 \end{lstlisting}
 
 \begin{figure}[H]
@@ -557,61 +557,54 @@ exec switch_root /newroot /sbin/init
 \item Example (on PC) for the /bin/ls program : \textbf{ldd ls}
 \end{itemize}
 
-\begin{lstlisting}[style=console,label={lst:init_ramfs},caption={}]
+\begin{lstlisting}[style=bash,label={lst:init_ramfs},caption={}]
 #!/bin/sh
+# Copie de tous les fichiers utiles (librairies) pour initramfs
 ROOTFSLOC=ramfs
 HOME=/home/lmi
-echo " Begin "
 cd $HOME
 mkdir $ROOTFSLOC
 mkdir -p $ROOTFSLOC/{bin,dev,etc,home,lib,lib64,newroot,proc,root,sbin,sys}
-echo " Cpy /dev "
 cd $ROOTFSLOC/dev
 sudo mknod null c 1 3
 sudo mknod mmcblk0p b 179 0
-sudo mknod ttyS0 c 4 64
-sudo mknod ttyS3 c 4 67
 echo " Cpy /bin "
 cd ../bin
 cp ~/workspace/nano/buildroot/output/target/bin/busybox .
 ln -s busybox ls
 ln -s busybox dmesg
 cp ~/workspace/nano/buildroot/output/target/usr/bin/strace .
-echo " Cpy /sbin "
 cd ../sbin
 ln -s ../bin/busybox switch_root
-echo " Cpy /lib64 "
 cd ../lib64
 cp ~/workspace/nano/buildroot/output/target/lib64/libc-2.31.so .
 ln -s libresolv-2.31.so libresolv.so.2
 ln -s libc-2.31.so libc.so.6
 ln -s ../lib64/ld-2.31.so ld-linux-aarch64.so.1
-echo " Cpy /lib "
 cd ../lib
 cp ~/workspace/nano/buildroot/output/target/lib64/ld-2.31.so .
 ln -s ../lib64/ld-2.31.so ld-linux-aarch64.so.1
-echo " Create /init "
 cd ..
-cat > init << endofinput
+cat > init << endofinput # copie du script suivant dans init
+# Script d'éxécution après le boot (linux du initramfs)
 #!/bin/busybox sh
 mount -t proc none /proc
 mount -t sysfs none /sys
 mount -t ext4 /dev/mmcblk0p2 /newroot
 mount -n -t devtmpfs devtmpfs /newroot/dev
-exec sh
-#exec switch_root /newroot /sbin/init
+exec sh # interruption du démarrage (mode manuel)
+# Démarrage du linux général
+#exec switch_root /newroot /sbin/init 
 endofinput
 ######
 chmod 755 init
 cd ..
 sudo chown -R 0:0 $ROOTFSLOC
-echo " cpio / gzip / mkimage "
 cd $ROOTFSLOC
 find . | cpio --quiet -o -H newc > ../Initrd
 cd ..
 gzip -9 -c Initrd > Initrd.gz
 mkimage -A arm -T ramdisk -C none -d Initrd.gz uInitrd
-echo "DONE"
 \end{lstlisting}
 
 \subsection{Files permissions}

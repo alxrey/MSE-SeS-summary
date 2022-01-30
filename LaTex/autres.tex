@@ -5,31 +5,20 @@
 \begin{document}
 \section{Autres}
 \subsection{Commandes}
-\begin{table}[H]
-\centering
-\begin{tabular}{ll}
-Commande & Description\\\hline
-\verb!netcat! (\verb!nc!) & Couteau suisse du TCP/IP. Permet de scanner des ports\\
-\verb!nmap! & Analyse des ports ouverts\\
-\verb!ssh! & Connexion à un système par interpréteur de commande\\
-\verb!dd! & copie byte à byte entre des streams. (\verb!sudo dd if=/dev/zero/ of=/dev/null bs=512 count=100 seek=16!)\\
-\verb!parted! & création / modification de partiations (\verb!sudo parted /dev/sdb mklabel msdos!\\
-\verb!mkfs.ext4! & commandes ext4 pour créer / modifier une partition
-\end{tabular}
-\end{table}
+\paragraph{netcat} (\verb!nc!) : Couteau suisse du TCP/IP. Permet de scanner des ports
+\paragraph{nmap} : Analyse des ports ouverts
+\paragraph{ssh} : Connexion à un système par interpréteur de commande
+\paragraph{dd} : copie byte à byte entre des streams. (\verb!sudo dd if=/dev/zero/!\\\verb!of=/dev/null bs=512 count=100 seek=16!)
+\paragraph{parted} : création / modification de partiations (\verb!sudo parted /dev/sdb mklabel msdos!
+\paragraph{mkfs.ext4} : commandes ext4 pour créer / modifier une partition
 
 \subsection{Définitions}
-\begin{table}[H]
-\begin{tabular}{ll}
-Nom & Description\\\hline
-Honeypot & "Pot de miel" ou leurre pour faire croire qu'un système non-sécurisé est présent (à tord)\\
-Toolchain & Codes sources et outils nécessaires pour générer une image éxécutable (sur un système embarqué)\\
-Kernel & Coeur Linux (avec le format u-boot)\\
-Rootfs & Root Filesystem (avec tous les dossiers et outils utilisés par Linux)\\
-Usrfs & User Filesystem (applications spécifiques à l'utilisation du système embarqué)\\
-Buildroot & Ensemble de makefiles et patchs qui simplifient et automatisent la création d'un Linux pour système embarqué\\
-uClibc & Librairie c de base similaire à glibc mais plus compacte (pour systèmes MMU-less)\\
-Busybox & Binaire unique qui contient toutes les commandes de base (ls, cat, mv)
-\end{tabular}
-\end{table}
+\paragraph{Honeypot} : "Pot de miel" ou leurre pour faire croire qu'un système non-sécurisé est présent (à tord)
+\paragraph{Toolchain} : Codes sources et outils nécessaires pour générer une image éxécutable (sur un système embarqué)
+\paragraph{Kernel} : Coeur Linux (avec le format u-boot)
+\paragraph{Rootfs} : Root Filesystem (avec tous les dossiers et outils utilisés par Linux)
+\paragraph{Usrfs} : User Filesystem (applications spécifiques à l'utilisation du système embarqué)
+\paragraph{Buildroot} : Ensemble de makefiles et patchs qui simplifient et automatisent la création d'un Linux pour système embarqué
+\paragraph{uClibc} : Librairie c de base similaire à glibc mais plus compacte (pour systèmes MMU-less)
+\paragraph{Busybox} : Binaire unique qui contient toutes les commandes de base (ls, cat, mv)
 \end{document}
