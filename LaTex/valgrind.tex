@@ -6,12 +6,12 @@
 
 \subsection{Outils de Valgrind}
 \begin{itemize}
-\item Memcheck : Détection d'erreur mémoire
-\item Cachegrind : Profiler de mémoire cache
+\item Memcheck : Détection d'erreur mémoire (accès à de la mémoire non-allouée, valeurs non initialisées, double free, memcpy, fuites) 
+\item Cachegrind : Profiler de mémoire cache (hit et miss)
 \item Callgrind : Profiler de cache avec infos supp et graph
 \item Helgrind : Détection d'erreur de threads 1
 \item DRD : Détection d'erreur de threads 2
-\item Massif : Profiler de heap et stack (memory leak)
+\item Massif : Profiler de heap et stack (mémoire restante, leaks)
 \item DHAT : Profiler de bloc dans le heap
 \end{itemize}
 
