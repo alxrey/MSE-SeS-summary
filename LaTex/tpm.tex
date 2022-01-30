@@ -43,7 +43,7 @@ où\\
 En deux parties: 1. Calcul du HASH puis encryptage avec clé privée. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\columnwidth]{Figures/TPM/signature.png}
+    \includegraphics[width=0.8\columnwidth]{Figures/TPM/signature.png}
 \end{figure}
 
 \subsection{Implémentations TPM}
@@ -82,8 +82,6 @@ n & \verb!n_primary!
 \end{center}
 \subsection{Commandes principales}
 \begin{lstlisting}[style=bash]
-
-tpm2_createprimary -C o -G rsa2048 -c o_prim #créer un clé primaire owner
 tpm2_getcap handles-transient #voir clé dans la RAM
 tpm2_getcap handles-persistent #voir clé dans la NV-RAM
 tpm2_evictcontrol -c o_primary.ctx # sauver une clé en NV-RAM

@@ -82,21 +82,21 @@ This file system is very used in different Linux distribution.
 \end{itemize}
 
 \subsubsection{Ext4 commands}
-\begin{lstlisting}[style=console,label={},caption={}]
-    # Create a partition (rootfs), start 64MB, length 256MB
-    sudo parted /dev/sdb mkpart primary ext4 131072s 655359s
-    # Format the partition with the volume label = rootfs
-    sudo mkfs.ext4 /dev/sdb1 -L rootfs
-    # Modify (on the fly) the ext4 configuration
-    sudo tune2fs <options> /dev/sdb1
-    # check the ext4 configuration
-    mount
-    sudo tune2fs -l /dev/sdb1
-    sudo dumpe2fs /dev/sdb1
-    # mount an ext4 file system
-    mount -t ext4 /dev/sdb1 /mnt/test // with default options
-    mount -t ext4 -o defaults,noatime,discard,nodiratime,data=writeback,acl,user_xattr
-    /dev/sdb1 /mnt/test
+\begin{lstlisting}[style=bash,label={},caption={}]
+# Create a partition (rootfs), start 64MB, length 256MB
+sudo parted /dev/sdb mkpart primary ext4 131072s 655359s
+# Format the partition with the volume label = rootfs
+sudo mkfs.ext4 /dev/sdb1 -L rootfs
+# Modify (on the fly) the ext4 configuration
+sudo tune2fs <options> /dev/sdb1
+# check the ext4 configuration
+mount
+sudo tune2fs -l /dev/sdb1
+sudo dumpe2fs /dev/sdb1
+# mount an ext4 file system
+mount -t ext4 /dev/sdb1 /mnt/test // with default options
+mount -t ext4 -o defaults,noatime,discard,nodiratime,data=writeback,acl,user_xattr
+/dev/sdb1 /mnt/test
 \end{lstlisting}
 
 \subsubsection{Ext4 mount options and MMC/SD-Card}
@@ -271,7 +271,7 @@ blocks are always written to the end.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/log_fs.png}
+    \includegraphics[width=0.8\columnwidth]{Figures/fileSystem/log_fs.png}
     \label{fig:log_fs}
 \end{figure}
 \begin{enumerate}
@@ -388,7 +388,7 @@ to create virtual layers of block devices. It is required by LVM2 (Logical Volum
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\columnwidth]{Figures/fileSystem/luksCont.png}
+    \includegraphics[width=0.6\columnwidth]{Figures/fileSystem/luksCont.png}
     \label{fig:luksCont}
 \end{figure}
 
@@ -583,16 +583,6 @@ cp ~/workspace/nano/buildroot/output/target/bin/busybox .
 ln -s busybox ls
 ln -s busybox dmesg
 cp ~/workspace/nano/buildroot/output/target/usr/bin/strace .
-cd ../sbin
-ln -s ../bin/busybox switch_root
-cd ../lib64
-cp ~/workspace/nano/buildroot/output/target/lib64/libc-2.31.so .
-ln -s libresolv-2.31.so libresolv.so.2
-ln -s libc-2.31.so libc.so.6
-ln -s ../lib64/ld-2.31.so ld-linux-aarch64.so.1
-cd ../lib
-cp ~/workspace/nano/buildroot/output/target/lib64/ld-2.31.so .
-ln -s ../lib64/ld-2.31.so ld-linux-aarch64.so.1
 cd ..
 cat > init << endofinput # copie du script suivant dans init
 # Script d'éxécution après le boot (linux du initramfs)
@@ -620,7 +610,7 @@ mkimage -A arm -T ramdisk -C none -d Initrd.gz uInitrd
 Aller voir la section \ref{sec_filePerm}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/fileperm.png}
+    \includegraphics[width=0.8\columnwidth]{Figures/fileSystem/fileperm.png}
     \label{fig:fileperm}
 \end{figure}
 
