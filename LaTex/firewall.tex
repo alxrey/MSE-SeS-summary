@@ -45,7 +45,7 @@ NFQUEUE permet de passer un paquet au userspace
 \subsection{knockd}
 Configuration dynamique du parefeu netfilter. Lorsque des séquences sont reconnues (par exemple des ports spécifiques), le pare-feu est ouvert.
 \subsection{fwknop}
-Même système que knockd mais il utilise le contenu des paquets TCP / UDP (frame SPA)
+Même système que knockd mais il utilise le contenu des paquets TCP / UDP (frame SPA). Si un SPA est valide, le pare-feu est ouvert pendant un certain temps (par exemple 30s)
 
 \subsection{Commande iptables}
 \begin{center}
