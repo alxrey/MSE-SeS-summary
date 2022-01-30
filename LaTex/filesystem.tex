@@ -359,7 +359,7 @@ blocks are always written to the end.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\columnwidth]{Figures/fileSystem/luksFct.png}
+    \includegraphics[width=0.7\columnwidth]{Figures/fileSystem/luksFct.png}
     \label{fig:luksFct}
 \end{figure}
 
@@ -395,7 +395,6 @@ to create virtual layers of block devices. It is required by LVM2 (Logical Volum
 \subsubsection{Create LUKS partition}
 \begin{lstlisting}[style=bash,label={},caption={}]
 sudo cryptsetup --debug --pbkdf pbkdf2 luksFormat $DEVICE
-# Be careful, type yes in UPPERCASE
 # Or create a LUKS partition for the system with enough memory
 sudo cryptsetup --debug luksFormat $DEVICE
 # Be careful, type yes in UPPERCASE
@@ -511,11 +510,21 @@ the kernel cannot easily do by itself during the boot process.
     \label{fig:initRamFsBootSeq2}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/initRamFsBootSeq3.png}
-    \label{fig:initRamFsBootSeq3}
-\end{figure}
+\paragraph{Contenu de \texttt{boot.cmd}}
+\begin{lstlisting}[style=bash]
+setenv bootargs console=ttyS0,115200 earlyprintk root=/dev/mmcblk0p2 rootwait
+
+ext4load mmc 0 $kernel_addr_r Image
+ext4load mmc 0 $fdt_addr_r nanopi-neo-plus2.dtb
+ext4load mmc 0 0x50000000 uInitrd # load initramfs
+
+booti $kernel_addr_r 0x50000000 $fdt_addr_r
+\end{lstlisting}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=1\columnwidth]{Figures/fileSystem/initRamFsBootSeq3.png}
+%    \label{fig:initRamFsBootSeq3}
+%\end{figure}
 
 \begin{figure}[H]
     \centering
