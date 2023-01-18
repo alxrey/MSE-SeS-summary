@@ -1,18 +1,7 @@
-\documentclass[resume]{subfiles}
-
-
-\begin{document}
 \section{Firewall iptables}
 Il est nécessaire d'activer netfilter dans la configuration du kernel. Un hook est une étape lors du passage d'une trame dans le stack de protocoles. Le framework netfilter sera appelé à chaque hook
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\columnwidth]{img_6.png}
-\end{figure}
 On peut configurer netfilter avec la commande \verb!iptables!. \verb!ebtables! permet de configurer la couche 2 uniquement (Linux bridge). \verb!nftables! vise à remplacer tout le framework
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.6\columnwidth]{img_7.png}
-\end{figure}
+
 \subsection{Features}
 \begin{enumerate}
 \item Stateless packet filtering (table filter et ACCEPT, DROP, REJECT). Permet de protéger au niveau réseau (bloquage d'une ip en particulier, ou ports). Les paquets sont analysés de manière individuelle
@@ -36,10 +25,7 @@ la combinaison Chain-Table constitue les hooks
 \item nat (consultée lorsqu'un paquet créé une nouvelle connexion)
 \item filter (table de base)
 \end{itemize}
-\begin{figure}[H]
-\centering
-\includegraphics[angle=90,width=\columnwidth]{img_8.png}
-\end{figure}
+
 \subsection{NFQUEUE}
 NFQUEUE permet de passer un paquet au userspace
 \subsection{knockd}
@@ -51,5 +37,3 @@ Même système que knockd mais il utilise le contenu des paquets TCP / UDP (fram
 \begin{center}
 \verb!iptables -t table -COMMAND chain ... -j TARGET!
 \end{center}
-
-\end{document}

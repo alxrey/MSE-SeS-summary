@@ -1,7 +1,3 @@
-\documentclass[resume]{subfiles}
-
-
-\begin{document}
 \section{Kernel}
 \subsection{Compilation}
 On configure avec \verb!make linux-menuconfig! (ou \verb!make linux-xconfig!) puis on lance une compilation avec \verb!make linux-rebuild!
@@ -26,7 +22,7 @@ Si le système n'est pas un routeur, on peut choisir de désactiver le routage e
 \end{itemize}
 \subsection{Attaques}
 \begin{center}
-\includegraphics[width=0.6\columnwidth,page=1]{Schemas-crop.pdf}
+\includegraphics[width=0.6\columnwidth]{kernel.pdf}
 \end{center}
 \paragraph{Éxecution sur le stack} : Ii le stack est éxécutable, il est possible d'y placer du code puis de l'éxécuter (ce qui est de moins en moins le cas).
 \paragraph{ret2libc} : Permet de bypasser la non-éxécution du stack. Consiste à éxécuter du code dans une librairie comme libc.
@@ -36,4 +32,3 @@ Si le système n'est pas un routeur, on peut choisir de désactiver le routage e
 \paragraph{ASLR} : Address Space Layout Randomization (changement des adresses de stack et heap) afin d'éviter les attaques \verb!ret2libc!
 \paragraph{PIE} : Position de l'éxécutable modifiée pour éviter qu'une attaque soit faite (ou la rendre plus difficile)
 \paragraph{Canary} : Variable qui permet de détecter un dépassement dans le stack
-\end{document}

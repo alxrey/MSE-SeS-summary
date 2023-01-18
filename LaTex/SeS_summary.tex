@@ -1,5 +1,7 @@
-\documentclass[]{article}
-
+\documentclass[a4paper, 11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[landscape,margin=1.5cm, a4paper]{geometry}
 \usepackage{multicol}
@@ -22,36 +24,26 @@
 \renewcommand{\baselinestretch}{0.3}
 \setlength{\belowcaptionskip}{-10pt}
 
+\graphicspath{{figures/}}
+
 \input{listings.tex}
 
-
-% Liste des slides
-%
-% 0_introduction					ok
-% 1_nanopi						ok
-% 2_u-boot						seb
-% 3_compileKernel
-% 4_Valgrind						ok
-% 5_LinuxHardening
-% 6_filesystem_base
-% 6_FileSystem							ok
-% 6_FileSystem_LUKS_InitRamFS			ok
-% 6_FileSystemSecurity
-% 8_NetFilterKnokdFwknod			
-% 9_fail2ban						Pas dans l'exa
-% 10_tpm							ok
+% color section header
+\titleformat{\section}
+{\color{BrickRed}\normalfont\Large\bfseries}
+{\color{BrickRed}\thesection}{1em}{}
 
 \begin{document}
-\begin{multicols}{3}
-\subfile{introduction}
-\subfile{buildroot}
-\subfile{uboot}
-\subfile{kernel}
-\subfile{valgrind}
-\subfile{hardening}
-\subfile{filesystem}
-\subfile{firewall}
-\subfile{tpm}
-\subfile{autres}
-\end{multicols}
+    \begin{multicols}{3}
+        \subfile{introduction}
+        \subfile{buildroot}
+        \subfile{uboot}
+        \subfile{kernel}
+        \subfile{valgrind}
+        \subfile{hardening}
+        \subfile{filesystem}
+        \subfile{firewall}
+        \subfile{tpm}
+        \subfile{autres}
+    \end{multicols}
 \end{document}

@@ -1,7 +1,3 @@
-\documentclass[resume]{subfiles}
-
-
-\begin{document}
 \section{U-boot}
 \subsection{Compilation}
 On configure avec \verb!make uboot-menuconfig! puis on effectue la compilation avec une des deux manières :
@@ -29,14 +25,11 @@ Le FDT est stocké dans le fichier \verb!u-boot.itb!
 \subsection{FIT (Flattened Image Tree)}
 Nouveau format qui permet d'insérer plusieurs fichiers dans un seul
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.75\columnwidth]{img_5.png}
+    \centering
+    \includegraphics[width=0.75\columnwidth]{FIT.png}
 \end{figure}
 La commande \verb!mkimage! permet de convertir un fichier \verb!.its! en un fichier \verb!.itb!.\\
 Le fichier \verb!u-boot.itb! est construit avec la commande
 \begin{center}
 \verb!mkimage -f u-boot.its -E u-boot.itb!
 \end{center}
-
-
-\end{document}

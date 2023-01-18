@@ -1,7 +1,3 @@
-\documentclass[resume]{subfiles}
-
-
-\begin{document}
 \section{TPM}
 
 \subsection{Chiffrements}
@@ -12,7 +8,7 @@
 \item Une seul clé pour crypter et décrypter
 \item Codage par bloc ou par bloc chainé \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\columnwidth]{Figures/TPM/CBC.png}
+    \includegraphics[width=0.75\columnwidth]{CBC.png}
 \end{figure}
 
 \item \begin{lstlisting}[style=bash]
@@ -43,7 +39,7 @@ où\\
 En deux parties: 1. Calcul du HASH puis encryptage avec clé privée. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\columnwidth]{Figures/TPM/signature.png}
+    \includegraphics[width=0.8\columnwidth]{signature.png}
 \end{figure}
 
 \subsection{Implémentations TPM}
@@ -58,7 +54,7 @@ En deux parties: 1. Calcul du HASH puis encryptage avec clé privée.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\columnwidth]{Figures/TPM/internal.png}
+    \includegraphics[width=\columnwidth]{internal.png}
 \end{figure}
 
 \subsection{Hiérarchies}
@@ -139,5 +135,3 @@ tpm2_startauthsession --policy-session -S session
 tpm2_policypcr -S session -l sha1:0
 tpm2_unseal -p session:session -c 0x81010000 > passwd
 \end{lstlisting}
-
-\end{document}

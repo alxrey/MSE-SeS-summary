@@ -1,6 +1,3 @@
-\documentclass[resume]{subfiles}
-
-\begin{document}
 \section{File system}
 \subsection{Génération}
 Squelette de rootfs dans \\ \verb!workspace/nano/buildroot/system/skeleton!. Il est ensuite copié dans \verb!buildroot/output/target! et les fichiers nécessaires y sont ensuite ajoutés.\\
@@ -23,14 +20,14 @@ Deux technologies principales sont disponible sur les Flash :
 \subsubsection{FS types}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/fileSystemType.PNG}
+    \includegraphics[width=\columnwidth]{fileSystemType.png}
     \label{fig:fileSystemType}
 \end{figure}
 
 \subsubsection{Choix d'un FS}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/fileSystemChoice.PNG}
+    \includegraphics[width=\columnwidth]{fileSystemChoice.png}
     \label{fig:fileSystemChoice}
 \end{figure}
 
@@ -221,7 +218,7 @@ Scalability:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\columnwidth]{Figures/fileSystem/fsComp.PNG}
+    \includegraphics[width=0.6\columnwidth]{fsComp.png}
     \label{fig:fsComp}
 \end{figure}
 
@@ -255,7 +252,7 @@ A journalized filesystem keeps track of every modification in a journal in a ded
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/b-tree.png}
+    \includegraphics[width=\columnwidth]{b-tree.png}
     \caption{B-tree type FS execution}
     \label{fig:b-tree}
 \end{figure}
@@ -271,7 +268,7 @@ blocks are always written to the end.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\columnwidth]{Figures/fileSystem/log_fs.png}
+    \includegraphics[width=0.8\columnwidth]{log_fs.png}
     \label{fig:log_fs}
 \end{figure}
 \begin{enumerate}
@@ -296,7 +293,7 @@ blocks are always written to the end.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/squashSystPerf.png}
+    \includegraphics[width=\columnwidth]{squashSystPerf.png}
     \label{fig:squashSystPerf}
 \end{figure}
 
@@ -544,7 +541,7 @@ On PC, NanoPi rootfs is in this directory: HOME/workspace/nano/buildroot/output/
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{Figures/fileSystem/builtInitRamFs.png}
+    \includegraphics[width=\columnwidth]{builtInitRamFs.png}
     \label{fig:builtInitRamsFs}
 \end{figure}
 
@@ -610,7 +607,7 @@ mkimage -A arm -T ramdisk -C none -d Initrd.gz uInitrd
 Aller voir la section \ref{sec_filePerm}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\columnwidth]{Figures/fileSystem/fileperm.png}
+    \includegraphics[width=0.8\columnwidth]{fileperm.png}
     \label{fig:fileperm}
 \end{figure}
 
@@ -676,4 +673,3 @@ find . -perm +220 #write bit for user or group = 1 (like /220)
 
 \subsection{Mémorisation des mots de passes}
 Les mot de passes sont sotckés en HASH (preuve sans connaissance)
-\end{document}

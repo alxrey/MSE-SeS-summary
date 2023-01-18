@@ -1,33 +1,22 @@
-\documentclass[resume]{subfiles}
-
-
-
-\begin{document}
 \section{Buildroot}
+% ----
 \subsection{Répertoires}
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.9\columnwidth]{img_1.png}
+    \centering
+    \includegraphics[width=\columnwidth]{buildroot_dir.png}
 \end{figure}
-Ce qui est manquant dans le dossier output sera recompilé lorsque la commande \verb!make! est lancée (ou alors en faisant la commande\\
-\verb!make <package>-rebuild!.\\
-Le dossier \verb!rootfs_overlay! permet d'ajouter des fichiers au \verb!rootfs!\\
-(\verb!/workspace/nano/buildrootboard/!\\
-\verb!friendlyarm/nanopi-neo-plus2/rootfs_overlay!)
-\subsection{Compilation}
-Dans le répertoire \verb!buildroot!, effectuer la commande \verb!make menuconfig! puis \verb!make!. \verb!make clean! pour effacer tous les fichiers compilés.\\
-La configuration permet notamment de 
-\begin{enumerate}
-\item Modifier le rootfs
-\end{enumerate}
+\verb+make+ compile les fichiers manquant au dossier \verb+output+ (compiler que un paquet avec\verb+make <package>-rebuild+).
+%
+\subsubsection{\texttt{rootfs\_overlay}}
+Permet de personnaliser un système de fichiers en utilisant des répertoires supplémentaires pour écraser ou ajouter des fichiers au système de fichiers de base généré par Buildroot.
+% ----
 \subsection{Carte SD}
 \begin{figure}[H]
-\centering
-\includegraphics[height=\columnwidth,angle=90]{img_2.png}\\
-\includegraphics[width=0.5\columnwidth]{img_3.png}
+    \centering
+    \includegraphics[height=\columnwidth, angle=90]{SD_card.png}
 \end{figure}
 \begin{center}
-\verb!genimage.cfg!$\longrightarrow$\verb!genimage!$\longrightarrow$\verb!sdcard.img!$\longrightarrow$\verb!dd!$\longrightarrow$ carte SD
+\verb!genimage.cfg!$\rightarrow$\verb!genimage!$\rightarrow$\verb!sdcard.img!$\rightarrow$\verb!dd!$\rightarrow$ carte SD
 \end{center}
 Les fichiers pour l'initialisation sont\\
 \begin{table}[H]
@@ -58,5 +47,5 @@ Le fichier \verb!boot.scr! est utilisé par u-boot pour charger le kernel Linux.
 \item Le noyau Linux procédera à son initialisation sur la base des bootargs et des éléments de configuration contenus dans le fichier FDT (sun50i-h5-nanopi-neo plus2.dtb).
 \item Le noyau Linux attachera les systèmes de fichiers (rootfs, tmpfs, usrfs, …) et poursuivra son exécution.
 \end{enumerate}
+
 Voir \ref{fig:initRamFsBootSeq} pour l'illustration
-\end{document}
