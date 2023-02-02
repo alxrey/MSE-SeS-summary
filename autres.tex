@@ -1,4 +1,5 @@
 \section{Autres}
+% ----------
 \subsection{Commandes}
 \paragraph{netcat} (\verb!nc!) : Couteau suisse du TCP/IP. Permet de scanner des ports
 \paragraph{nmap} : Analyse des ports ouverts
@@ -6,7 +7,7 @@
 \paragraph{dd} : copie byte à byte entre des streams. (\verb!sudo dd if=/dev/zero/!\\\verb!of=/dev/null bs=512 count=100 seek=16!)
 \paragraph{parted} : création / modification de partiations (\verb!sudo parted /dev/sdb mklabel msdos!
 \paragraph{mkfs.ext4} : commandes ext4 pour créer / modifier une partition
-
+% ----------
 \subsection{Définitions}
 \paragraph{Honeypot} : "Pot de miel" ou leurre pour faire croire qu'un système non-sécurisé est présent (à tord)
 \paragraph{Toolchain} : Codes sources et outils nécessaires pour générer une image éxécutable (sur un système embarqué)
@@ -16,3 +17,9 @@
 \paragraph{Buildroot} : Ensemble de makefiles et patchs qui simplifient et automatisent la création d'un Linux pour système embarqué
 \paragraph{uClibc} : Librairie c de base similaire à glibc mais plus compacte (pour systèmes MMU-less)
 \paragraph{Busybox} : Binaire unique qui contient toutes les commandes de base (ls, cat, mv)
+
+\subsubsection{Sauver config pour prochaine installation}
+\verb+rsync -a /buildroot/board/...+\\
+\hspace*{1cm} \verb+/workspace/config/board+
+
+\verb+cp /buildroot/configs/... workspace/configs/...+

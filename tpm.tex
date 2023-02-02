@@ -1,137 +1,63 @@
+% TPM (DONE)
 \section{TPM}
-
+% ----------
 \subsection{Chiffrements}
-
-\subsubsection{symétrique}
-
+Une fonction de hachage $H$ prend une entrée $m$ de longueur variable et retourne un string de taille fixe $h$ (valeur hachée).
+$$h=H(m)$$
+\paragraph{Propriétés}
 \begin{itemize}
-\item Une seul clé pour crypter et décrypter
-\item Codage par bloc ou par bloc chainé \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.75\columnwidth]{CBC.png}
-\end{figure}
-
-\item \begin{lstlisting}[style=bash]
-openssl enc -aes-256-cbc -e -in t.txt -out t.enc #encrypt
-\end{lstlisting}
-\item \begin{lstlisting}[style=bash]
-openssl enc -aes-256-cbc -d -in t.enc -out t.txt #decrypt
-\end{lstlisting}
+    \item $H(m)$ est rapide à calculer
+    \item $H$ est à sens unique
+    \item $H$ est "collision-free"
 \end{itemize}
-
-\subsubsection{asymétrique}
+% ----------
+\subsubsection{Symétrique}
 \begin{itemize}
-\item Deux clés (publique et privée) clé publique disponible par des certificats (CMD pgp)
-\item Encrypt public - Decrypt private = confidentialité
-\item Encrypt private- Decrypt public = signature digitale
+    \item Même clé permet le chiffrement et déchiffrement
+    \item Chiffrement par bloc, éventuellemnt chaîné (CBC - Cipher Block Chaining). IV (Initial Vector) non secret.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\columnwidth]{CBC.png}
+    \end{figure}
 \end{itemize}
-
-\subsubsection{hash}
-
-Transforme un texte, document en un nombre de N bits unique (SHA-2, SHA-3, Blake2).
-
-\verb!md5sum file => a6a0e8d0522...! 
-où\\
-\verb!openssl dgst -md5 file!  
-
-\subsubsection{signature}
-\label{sec_sign}
-En deux parties: 1. Calcul du HASH puis encryptage avec clé privée. 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\columnwidth]{signature.png}
-\end{figure}
-
-\subsection{Implémentations TPM}
+% ----------
+\subsubsection{Asymétrique}
 \begin{itemize}
-\item discrete : Circuit dédié 
-\item integrated : Partie du $\mu C$ qui gère le TPM
-\item Hypervisor : virtuel fournis par personne fiable
-\item Software : virtuel pour faire des test pas sécurisé
+    \item Deux clés (publiques et privées) pour chaque partie, clé publique disponible par des certificats.
+    \item Encrypt public $\rightarrow$ Decrypt private $\Rightarrow$ \textbf{confidentialité}, intégrité.
+    \item Encrypt private $\rightarrow$ Decrypt public $\Rightarrow$ \textbf{authenticité} (signature numérique), intégrité.
 \end{itemize}
-
-\subsection{Architecture interne}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\columnwidth]{internal.png}
+    \includegraphics[width=\linewidth]{signature.png}
 \end{figure}
-
-\subsection{Hiérarchies}
+% ----------
+\subsection{TPM (Trusted Platform Module)}
+$\Rightarrow$ coprocesseur cryptographique.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{TPM.png}
+\end{figure}
 \begin{itemize}
-\item endorsement : réservé au fabricant du TPM et fixé lors de la fabrication.
-\item platform : réservé au fabricant de l'hôte et peut être modifier par l'équipementier.
-\item owner : hiérarchie dédiée à l'utilisateur primaire du TPM peut être modifié en tout temps.
-\item null : réservé aux clés temporaires (RAM s'efface à chaque redémarrage)
+    \item Discret : Circuit dédié (tamperproof)
+    \item Intégré : Partie du $\mu$C qui gère le TPM
+    \item Hyperviseur : fournis par personnes fiables
+\end{itemize}
+Peut aussi être software
+% ----------
+\subsubsection{Hiérarchies}
+Stockage des clés
+\begin{itemize}
+    \item endorsement : réservé au fabricant du TPM et fixé lors de la fabrication.
+    \item platform : réservé au fabricant de l'hôte et peut être modifier par l'équipementier.
+    \item owner : hiérarchie dédiée à l'utilisateur primaire du TPM peut être modifié en tout temps.
+    \item null : réservé aux clés éphémères (RAM s'efface à chaque redémarrage)
 \end{itemize}
 
-\subsection{Créer, utiliser clés}
-\begin{center}
-\verb!tpm2_createprimary -C <A> -G rsa2048 -c <B>.ctx!\\
-\begin{tabular}{cc}
-$<$A$>$ & $<$B$>$ \\\hline
-e & \verb!e_primary!\\
-p & \verb!p_primary!\\
-o & \verb!o_primary!\\
-n & \verb!n_primary!
-\end{tabular}
-\end{center}
-\subsection{Commandes principales}
-\begin{lstlisting}[style=bash]
-tpm2_getcap handles-transient #voir clé dans la RAM
-tpm2_getcap handles-persistent #voir clé dans la NV-RAM
-tpm2_evictcontrol -c o_primary.ctx # sauver une clé en NV-RAM
-tpm2_flushcontext! -t ##effacer toute la RAM
-tpm2_create -C o_prim -G rsa2048 -u child_pub -r child_priv #créer clé enfant
-tpm2_load -C o_prim -u child_pub -r child_priv -c child #charger clé enfant
-shred passwd, rm -f passwd #supprimer de l'hôte
-
-\end{lstlisting}
-
-\subsection{encrypter-décrypter, signer-vérifier}
-\begin{lstlisting}[style=bash]
-
-tpm2_rsaencrypt -c child -s rsaes clearfile -o encryptedfile
-tpm2_rsadecrypt -c child -s rsaes encryptedfile -o clearfile
-tpm2_sign -c child -g sha256 -o file.sign file
-tpm2_verifysignature -c child -g sha256 -s file.sign -m file
-\end{lstlisting}
-
-\subsection{Registres PCR}
-
-\begin{lstlisting}[style=bash]
-tpm2_pcrreset 0
-tpm2_pcrextend 0:sha1=8c83...(hash)
-\end{lstlisting}
-
-\subsection{Sauver des données sur le TPM}
-
-\begin{lstlisting}[style=bash]
-tpm2_evictcontrol -c passwd.ctx 0x81010000 -C o  #sauver
-tpm2_unseal -c 0x81010000 > passwd  #récuperer
-\end{lstlisting}
-
-\subsection{Sauver des données et protéger avec PCR policy}
-\begin{lstlisting}[style=bash]
-sha1sum passwd #calcul hash
-tpm2_pcrreset 0 #flush PCR0
-tpm2_pcrextend 0:sha1=8c839... #sauve hash
-tpm2_createprimary -C o -G rsa2048 -c primary
-tpm2_startauthsession -S session
-tpm2_policypcr -S session -l sha1:0 -L pcr0_policy #créer politique
-tpm2_flushcontext session
-
-tpm2_create -C primary -g sha256 \
--u passwd_pcr0.pub -r passwd_pcr0.priv \
--i passwd -L pcr0_policy
-
-tpm2_evictcontrol -c passwd_pcr0 0x81010000 -C o
-tpm2_flushcontext session
-
-shred passwd
-rm -f passwd
-
-tpm2_startauthsession --policy-session -S session
-tpm2_policypcr -S session -l sha1:0
-tpm2_unseal -p session:session -c 0x81010000 > passwd
-\end{lstlisting}
+\subsection{Platform Configuration Registers (PCR)}
+The prime use case is to provide a method to cryptographically record (measure) software state or configuration data used by a device.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{PCR.png}
+\end{figure}

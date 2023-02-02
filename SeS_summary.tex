@@ -3,26 +3,25 @@
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
 \usepackage[dvipsnames]{xcolor}
-\usepackage[landscape,margin=1.5cm, a4paper]{geometry}
+\usepackage[landscape, margin=1.5cm, a4paper]{geometry}
 \usepackage{multicol}
 \usepackage{graphicx}
 \usepackage{amsmath}
-\pagestyle{empty}
 \usepackage{float}
 \usepackage{enumitem}
-\setlist[itemize]{nosep, itemsep=0pt, leftmargin=0.5cm}
-\setlist[enumerate]{nosep, itemsep=0pt, leftmargin=0.5cm}
-\usepackage{physics}
+\setlist[itemize]{nosep, itemsep=0pt, leftmargin=0.8cm}
+\setlist[enumerate]{nosep, itemsep=0pt, leftmargin=0.8cm}
+%\usepackage{physics}
 \usepackage{subfiles}
 \setlength{\parindent}{0em}
 \setlength{\parskip}{0em}
 \usepackage{titlesec}
-\titlespacing*{\section}{1pt}{1ex plus 1ex minus .2ex}{1ex plus .2ex}
-\titlespacing*{\subsection}{1pt}{1ex plus 1ex minus .2ex}{1ex plus .2ex}
-\titlespacing*{\subsubsection}{1pt}{1ex plus 1ex minus .2ex}{0.5ex plus .2ex}
+\titlespacing*{\section}{1pt}{2ex plus 1ex minus .2ex}{1ex plus .2ex}
+\titlespacing*{\subsection}{1pt}{2ex plus 1ex minus .2ex}{1ex plus .2ex}
+\titlespacing*{\subsubsection}{1pt}{2ex plus 1ex minus .2ex}{0.5ex plus .2ex}
 \titlespacing*{\paragraph}{0pt}{1ex plus 1ex minus .2ex}{0.5ex plus .2ex}
-\renewcommand{\baselinestretch}{0.3}
-\setlength{\belowcaptionskip}{-10pt}
+%\renewcommand{\baselinestretch}{0.3}
+%\setlength{\belowcaptionskip}{-10pt}
 
 \graphicspath{{figures/}}
 
@@ -39,9 +38,12 @@
         \subfile{buildroot}
         \subfile{uboot}
         \subfile{kernel}
+        \newpage
         \subfile{valgrind}
         \subfile{hardening}
         \subfile{filesystem}
+        \subfile{filesystemSecurity}
+        \subfile{hashcat}
         \subfile{firewall}
         \subfile{tpm}
         \subfile{autres}

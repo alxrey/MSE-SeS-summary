@@ -1,48 +1,50 @@
 \section{Hardening}
-
+% ----------
 \subsection{Intégrité package, programme}
-Aller voir la section \ref{sec_sign}.
+Après download d'un package sur un site $\rightarrow$ contrôler intégrité (état) et authenticité (origine) avec clé public. \verb!gpg! = "Pretty Good Privacy".
 \begin{lstlisting}[style=console]
 gpg --verify "package"
 gpg --keyserver keyserver.ubuntu.com --search-keys "KEY"
 \end{lstlisting}
-
+% ----------
 \subsection{Configurer un package, programme}
 \begin{lstlisting}[style=console]
-tar xvzf package1.tar.gz
+tar xvzf package1.tar.gz # unzip
 cd package1
-less INSTALL or less README #Analyze the different options
+
+# Analyze the different options
+less INSTALL or less README
+# or
 ./configure --help
 \end{lstlisting}
-
+% ----------
 \subsection{Cross-compiler un programme}
-Ajout de host et prefix
 \begin{lstlisting}[style=console]
+# Ajout de host et prefix:
 ./configure --host=aarch64-none-linux-gnu --prefix=/home/dir
+
 make 
 make install
 \end{lstlisting}
 
+Parfois la cross-compilation n'est facilement configurable et il faut éditer directement le Makefile.
+% ----------
 \subsection{Contrôler les services, les ports ouverts}
 \begin{itemize}
-\item ps -ale : montre tous les process
-\item ps -aux : montre les droits des process
-\item lsof    : montre les ports ouverts
-\item nmap    : montre les ports ouvert sur à une IP
-
+    \item \verb!ps -ale! : montre tous les process
+    \item \verb!ps -aux! : montre les droits des process
+    \item \verb!netstat! : affiche les ports TCP/UDP ouverts
+    \item \verb!lsof!    : montre les ports ouverts
+    \item \verb!nmap!    : scan les ports ouvert liés à une IP
 \end{itemize}
-
-
-\subsection{De contrôler les file systems}
-\textcolor{red}{A FAIRE}
-
+% ----------
 \subsection{Permissions des fichiers, dossiers}
 \label{sec_filePerm}
 \begin{lstlisting}[style=console]
 ls -al => -rwxrwxrwx usr grp ..... t.txt
 chmod 755 t.txt => -rwxr-xr-x usr grp .....t.txt
 \end{lstlisting}
-
+% ----------
 \subsection{Sécuriser le réseau}
 \begin{itemize}
 \item Désactiver l'IPv6
@@ -54,22 +56,22 @@ chmod 755 t.txt => -rwxr-xr-x usr grp .....t.txt
 \item Désactiver ICMP echo et temps
 \item Activer syn cookies (pour TCP)
 \end{itemize}
-
+% ----------
 \subsection{Contrôler-sécuriser user}
 \label{sec_usrPerm}
 Modifier le umask à 0027 réduit les droits
 $$\text{Droit} = \overline{\text{umask}}\ \&\ 0777$$
-
+% ----------
 \subsection{Limiter le login root}
 \begin{lstlisting}[style=console]
 chmod 700 /root #limite l'accès au dossier root
 sudo #pour avoir les droits root
 \end{lstlisting}
 Ne pas mettre le . dans la path
-
+% ----------
 \subsection{Sécuriser le noyau}
 Aller voir dans la section \ref{sec_protections}
-
+% ----------
 \subsection{Sécuriser une application}
 Activer l'option de compilation $-fstack-protector-all$ et $noexecstack$
 \begin{lstlisting}[style=console]
